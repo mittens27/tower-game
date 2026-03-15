@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cmlr33soqx87t"]
+
+[ext_resource type="Texture2D" uid="uid://c7e4mlqp2iogb" path="res://assets/tiles/Trampoor Dungeon Tiles/trapmoor_placement_sample.png" id="1_iotpj"]
+[ext_resource type="Script" uid="uid://xdhwserl7xt1" path="res://assets/sprites/log_door.gd" id="1_y4x7l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4x7l"]
+atlas = ExtResource("1_iotpj")
+region = Rect2(256, 96, 16, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f20tb"]
+atlas = ExtResource("1_iotpj")
+region = Rect2(256, 96, 16, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5tfg"]
+atlas = ExtResource("1_iotpj")
+region = Rect2(256, 96, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mleq5"]
+atlas = ExtResource("1_iotpj")
+region = Rect2(256, 96, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_228i6"]
+atlas = ExtResource("1_iotpj")
+region = Rect2(256, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb01y"]
+atlas = ExtResource("1_iotpj")
+region = Rect2(256, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crd64"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4x7l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f20tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5tfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mleq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_228i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb01y")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5fbo"]
+size = Vector2(16, 80)
+
+[node name="LogDoor" type="Node2D" unique_id=417088954]
+script = ExtResource("1_y4x7l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=628387682]
+sprite_frames = SubResource("SpriteFrames_crd64")
+animation = &"open"
+centered = false
+offset = Vector2(-8, -80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=122651919]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=499026632]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_x5fbo")
+debug_color = Color(0.73895717, 0.22164553, 1, 0.41960785)

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bbmqj2xk7m4qp"]
+
+[ext_resource type="Script" uid="uid://boygy7u84mdn0" path="res://scripts/utilities/switch.gd" id="1_e8n4d"]
+[ext_resource type="Texture2D" uid="uid://b8rjk4ddaj1s2" path="res://assets/tiles/Trampoor Dungeon Tiles/TrapmoorTileset_v03.png" id="2_0so6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fus7o"]
+size = Vector2(58, 76)
+
+[node name="switch" type="Node2D" unique_id=1175417536]
+script = ExtResource("1_e8n4d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=275159278]
+position = Vector2(-8, -1)
+texture = ExtResource("2_0so6x")
+region_enabled = true
+region_rect = Rect2(48, 112, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=806882372]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2076073950]
+position = Vector2(-29, 1)
+shape = SubResource("RectangleShape2D_fus7o")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
