@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmlr33soqx87t"]
 
 [ext_resource type="Texture2D" uid="uid://c7e4mlqp2iogb" path="res://assets/tiles/Trampoor Dungeon Tiles/trapmoor_placement_sample.png" id="1_iotpj"]
-[ext_resource type="Script" uid="uid://xdhwserl7xt1" path="res://assets/sprites/log_door.gd" id="1_y4x7l"]
+[ext_resource type="Script" uid="uid://xdhwserl7xt1" path="res://scripts/utilities/log_door.gd" id="1_y4x7l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4x7l"]
 atlas = ExtResource("1_iotpj")
@@ -77,3 +77,5 @@ collision_mask = 2
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_x5fbo")
 debug_color = Color(0.73895717, 0.22164553, 1, 0.41960785)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

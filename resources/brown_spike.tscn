@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dam8ak80i4bxo"]
+
+[ext_resource type="Texture2D" uid="uid://b8rjk4ddaj1s2" path="res://assets/tiles/Trampoor Dungeon Tiles/TrapmoorTileset_v03.png" id="1_bnlwv"]
+[ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="2_xauag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kb1s"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxg8a"]
+size = Vector2(16, 16)
+
+[node name="BrownSpike" type="StaticBody2D" unique_id=1808175171]
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=205631882]
+texture = ExtResource("1_bnlwv")
+region_enabled = true
+region_rect = Rect2(144, 80, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132878595]
+shape = SubResource("RectangleShape2D_3kb1s")
+
+[node name="Attack" type="Node2D" parent="." unique_id=1035330737]
+
+[node name="Hitbox" parent="Attack" unique_id=1865862495 instance=ExtResource("2_xauag")]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Attack/Hitbox" index="0" unique_id=1718400250]
+shape = SubResource("RectangleShape2D_oxg8a")
+debug_color = Color(0.86554515, 0.08748438, 0, 0.41960785)
+
+[editable path="Attack/Hitbox"]

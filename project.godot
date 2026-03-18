@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 Events="*uid://dwpmq64tack5q"
+GMan="*uid://dsyn5v24eikqa"
 
 [input]
 
@@ -68,6 +69,10 @@ ui_use={
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
+2d_physics/layer_4="player_hitbox"
+2d_physics/layer_5="player_hurtbox"
+2d_physics/layer_6="enemy_hitbox"
+2d_physics/layer_7="enemy_hurtbox"
 2d_physics/layer_9="switches"
 
 [physics]

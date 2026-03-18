@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://bhpbpao7ftdtc" path="res://assets/sprites/characterBlueCape.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://byf5ucfu2vddv" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Resource" uid="uid://cepjoktcejudi" path="res://resources/PlayerData.tres" id="2_lvxji"]
+[ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="4_p47bc"]
+[ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="5_p47bc"]
+[ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="6_75vfm"]
+[ext_resource type="Resource" uid="uid://cflgu8ipnrtd5" path="res://resources/SwordAttack.tres" id="7_0owmy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
 atlas = ExtResource("1_8afob")
@@ -187,18 +192,55 @@ animations = [{
 radius = 6.0
 height = 22.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p47bc"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_75vfm"]
+height = 22.0
+
 [node name="player" type="CharacterBody2D" unique_id=1202608503 groups=["player"]]
 z_index = 2
 collision_layer = 2
-collision_mask = 257
+collision_mask = 261
 script = ExtResource("1_dovo2")
+player_data = ExtResource("2_lvxji")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=528118252]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3j4b4")
-animation = &"jump"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204181045]
+visible = false
 position = Vector2(-2, 1)
 shape = SubResource("CapsuleShape2D_8afob")
+
+[node name="HealthComponent" parent="." unique_id=899665252 instance=ExtResource("4_p47bc")]
+
+[node name="Hurtbox" parent="." unique_id=115641812 instance=ExtResource("5_p47bc")]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=939149868]
+position = Vector2(-2, 1)
+shape = SubResource("CapsuleShape2D_p47bc")
+debug_color = Color(0.9764706, 0, 0, 0.41960785)
+
+[node name="Attack" type="Node2D" parent="." unique_id=1486490599]
+
+[node name="Hitbox" parent="Attack" unique_id=1865862495 instance=ExtResource("6_75vfm")]
+collision_layer = 8
+collision_mask = 64
+attack_data = ExtResource("7_0owmy")
+
+[node name="CollisionShape2D" parent="Attack/Hitbox" index="0" unique_id=1718400250]
+position = Vector2(11, 1)
+shape = SubResource("CapsuleShape2D_75vfm")
+debug_color = Color(0.6582311, 0.3219091, 1, 0.41960785)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+
+[editable path="Hurtbox"]
+[editable path="Attack/Hitbox"]

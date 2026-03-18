@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bq4vdw01b4vw7"]
+
+[ext_resource type="Texture2D" uid="uid://cavqdlwxgj27s" path="res://assets/sprites/enemyGremlin.png" id="1_8f2tl"]
+[ext_resource type="Script" uid="uid://bb5rsy0kt76mf" path="res://scenes/enemies/gremlin.gd" id="1_yu2v2"]
+[ext_resource type="Resource" uid="uid://dvxi54kr6gaaa" path="res://resources/GremlinData.tres" id="2_80cyx"]
+[ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="2_yu2v2"]
+[ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="3_80cyx"]
+[ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="4_wjuu7"]
+[ext_resource type="Resource" uid="uid://cytq5palccj62" path="res://resources/EnemyTouchAttackData.tres" id="5_wjuu7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jnc4"]
+atlas = ExtResource("1_8f2tl")
+region = Rect2(72, 0, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxaoc"]
+atlas = ExtResource("1_8f2tl")
+region = Rect2(84, 0, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdcby"]
+atlas = ExtResource("1_8f2tl")
+region = Rect2(96, 0, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4lbe"]
+atlas = ExtResource("1_8f2tl")
+region = Rect2(108, 0, 12, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1nml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jnc4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxaoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdcby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4lbe")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ixhcb"]
+radius = 3.4416904
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oq683"]
+radius = 5.3992605
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jyr3h"]
+radius = 5.908074
+
+[node name="Gremlin" type="CharacterBody2D" unique_id=1739465047 groups=["enemies"]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_yu2v2")
+enemy_data = ExtResource("2_80cyx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=60255234]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_h1nml")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1775936898]
+visible = false
+position = Vector2(-0.31314087, 1.4697094)
+shape = SubResource("CapsuleShape2D_ixhcb")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=837160878]
+target_position = Vector2(6, 11)
+
+[node name="Attack" type="Node2D" parent="." unique_id=467065364]
+visible = false
+
+[node name="Hitbox" parent="Attack" unique_id=1865862495 instance=ExtResource("2_yu2v2")]
+collision_layer = 32
+collision_mask = 16
+attack_data = ExtResource("5_wjuu7")
+
+[node name="CollisionShape2D" parent="Attack/Hitbox" index="0" unique_id=1718400250]
+position = Vector2(0.03914261, 2.0391436)
+shape = SubResource("CircleShape2D_oq683")
+debug_color = Color(0.9847165, 0.1237172, 0, 0.41960785)
+
+[node name="HealthComponent" parent="." unique_id=899665252 instance=ExtResource("3_80cyx")]
+
+[node name="Hurtbox" parent="." unique_id=115641812 instance=ExtResource("4_wjuu7")]
+visible = false
+collision_layer = 64
+collision_mask = 8
+invulnerability_time = 0.0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=939149868]
+position = Vector2(0, 1.5694332)
+shape = SubResource("CircleShape2D_jyr3h")
+debug_color = Color(0.2494027, 0.6358461, 0, 0.41960785)
+
+[editable path="Attack/Hitbox"]
+[editable path="HealthComponent"]
+[editable path="Hurtbox"]

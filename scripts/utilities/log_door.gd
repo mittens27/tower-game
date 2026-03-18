@@ -20,3 +20,8 @@ func _on_switch_activated(switch):
 		return
 	door_open = true
 	sprite.play("open")
+	
+func _on_animated_sprite_2d_animation_finished():
+	if sprite.animation == "open":
+		collision.set_deferred("collision_layer", 0)
+		collision.set_deferred("collision_mask", 0)
