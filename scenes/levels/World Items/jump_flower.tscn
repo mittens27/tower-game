@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cdfh6s2fwetix"]
+
+[ext_resource type="Texture2D" uid="uid://bskly4k7qn2ru" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/TallPlantTop.png" id="1_1drep"]
+[ext_resource type="Script" uid="uid://0glu6jxae6n2" path="res://scenes/levels/World Items/jump_flower.gd" id="1_qlutl"]
+[ext_resource type="Texture2D" uid="uid://cbpp0mo1uy20l" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/TallPlantBottom.png" id="2_qlutl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5keqa"]
+atlas = ExtResource("1_1drep")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uvhd"]
+atlas = ExtResource("1_1drep")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_det38"]
+atlas = ExtResource("1_1drep")
+region = Rect2(32, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njp81"]
+atlas = ExtResource("1_1drep")
+region = Rect2(48, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_muaqm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5keqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uvhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_det38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njp81")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaibx"]
+atlas = ExtResource("2_qlutl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnc73"]
+atlas = ExtResource("2_qlutl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43cie"]
+atlas = ExtResource("2_qlutl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdbnc"]
+atlas = ExtResource("2_qlutl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhwyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaibx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnc73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43cie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdbnc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcw0a"]
+radius = 7.715748
+height = 24.055923
+
+[sub_resource type="Gradient" id="Gradient_qlutl"]
+colors = PackedColorArray(0.5157923, 0.6725292, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5keqa"]
+gradient = SubResource("Gradient_qlutl")
+
+[sub_resource type="Curve" id="Curve_qlutl"]
+_data = [Vector2(0, 0.5031847), 0.0, 0.0, 0, 0, Vector2(0.49809885, 1), 0.0, 0.0, 0, 0, Vector2(0.78326994, 0.7308917), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5keqa"]
+curve = SubResource("Curve_qlutl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4uvhd"]
+particle_flag_disable_z = true
+initial_velocity_min = 5.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 10, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_5keqa")
+color_ramp = SubResource("GradientTexture1D_5keqa")
+
+[node name="JumpFlower" type="Node2D" unique_id=836545440]
+script = ExtResource("1_qlutl")
+
+[node name="bulb" type="AnimatedSprite2D" parent="." unique_id=1233838359]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_muaqm")
+autoplay = "default"
+frame_progress = 0.38181
+
+[node name="stalk" type="AnimatedSprite2D" parent="." unique_id=1986829650]
+sprite_frames = SubResource("SpriteFrames_uhwyo")
+autoplay = "default"
+frame_progress = 0.9509038
+
+[node name="Area2D" type="Area2D" parent="." unique_id=717739654]
+visible = false
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1627916324]
+position = Vector2(0.4576645, -3.8901596)
+shape = SubResource("CapsuleShape2D_bcw0a")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1612047180]
+position = Vector2(0, -10.99)
+rotation = -1.5707964
+emitting = false
+amount = 25
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4uvhd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

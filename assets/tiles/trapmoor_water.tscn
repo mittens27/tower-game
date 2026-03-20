@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://6tgalkaa8ql3"]
+
+[ext_resource type="Texture2D" uid="uid://b8rjk4ddaj1s2" path="res://assets/tiles/Trampoor Dungeon Tiles/TrapmoorTileset_v03.png" id="1_36at2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jghwf"]
+atlas = ExtResource("1_36at2")
+region = Rect2(96, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h35lt"]
+atlas = ExtResource("1_36at2")
+region = Rect2(112, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmhal"]
+atlas = ExtResource("1_36at2")
+region = Rect2(128, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5e1f"]
+atlas = ExtResource("1_36at2")
+region = Rect2(144, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htv72"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jghwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h35lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmhal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5e1f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TrapmoorWater" type="AnimatedSprite2D" unique_id=503333600]
+sprite_frames = SubResource("SpriteFrames_htv72")
+autoplay = "default"
+frame_progress = 0.77321243

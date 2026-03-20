@@ -8,11 +8,15 @@ var state : PlayerState = PlayerState.IDLE
 @onready var hurtbox := $Hurtbox
 @onready var attack := $Attack/Hitbox
 @onready var hitbox := $Attack
+@onready var effect_handler = $StatusEffectHandler
 
 @export var player_data: PlayerData
 
 const SPEED = 175.0
 const JUMP_VELOCITY = -250.0
+
+var gravity_multiplier: float = 1.0
+var current_speed_multiplier: float = 1.0
 
 var is_attacking := false
 
@@ -29,12 +33,29 @@ func _ready():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		var applied_gravity = get_gravity() * gravity_multiplier
+		velocity += applied_gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
+	# Get the input direction and handle the movement/deceleration.
+	velocity.x *= current_speed_multiplier
+	
+	var direction := Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	if direction != 0:
+		sprite.flip_h = (direction == -1)
+		hitbox.scale.x = -1 if sprite.flip_h else 1
+
+	move_and_slide()
+	
+	#State Machine
 	if velocity.x == 0 and is_on_floor():
 		state = PlayerState.IDLE
 	elif velocity.x != 0 and is_on_floor():
@@ -50,19 +71,7 @@ func _physics_process(delta):
 	elif not is_attacking:
 		attack.monitorable = false
 		attack.monitoring = false
-	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-	if direction != 0:
-		sprite.flip_h = (direction == -1)
-		hitbox.scale.x = -1 if sprite.flip_h else 1
-
-	move_and_slide()
-	
 	match state:
 		PlayerState.IDLE:
 			sprite.play("idle")
@@ -103,6 +112,18 @@ func _on_died():
 func _on_hit_received(attack_data, source_position: Vector2):
 	health_component.damage(attack_data.damage)
 
+func apply_attack(attack_data, source_position):
+	health_component.damage(attack_data.damage)
+
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "attack":
 		is_attacking = false
+		
+func apply_spore_buff(duration: float, gravity_scale: float):
+	gravity_multiplier = gravity_scale
+	effect_handler.activate("spores")
+	
+	await get_tree().create_timer(duration).timeout
+	
+	gravity_multiplier = 1.0
+	effect_handler.deactivate("spores")

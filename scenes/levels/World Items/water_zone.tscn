@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ddbbacp40g7ye"]
+
+[ext_resource type="Script" uid="uid://bfpkphbodiyt4" path="res://scripts/utilities/water_zone.gd" id="1_ilm38"]
+[ext_resource type="Resource" uid="uid://dd1xemtr47ntd" path="res://resources/WaterAttack.tres" id="2_uqkk8"]
+
+[node name="WaterZone" type="Area2D" unique_id=1226998993]
+collision_mask = 6
+script = ExtResource("1_ilm38")
+attack_data = ExtResource("2_uqkk8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=14688837]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="5_p47bc"]
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="6_75vfm"]
 [ext_resource type="Resource" uid="uid://cflgu8ipnrtd5" path="res://resources/SwordAttack.tres" id="7_0owmy"]
+[ext_resource type="Script" uid="uid://bdgnt4radvneq" path="res://scenes/player/status_effect_handler.gd" id="8_qek5x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
 atlas = ExtResource("1_8afob")
@@ -199,6 +200,62 @@ height = 22.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_75vfm"]
 height = 22.0
 
+[sub_resource type="Gradient" id="Gradient_qek5x"]
+colors = PackedColorArray(0.5222768, 0.6771253, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5gtgg"]
+gradient = SubResource("Gradient_qek5x")
+
+[sub_resource type="Curve" id="Curve_h17s1"]
+_data = [Vector2(0, 0.38933122), 0.0, 0.0, 0, 0, Vector2(0.49809885, 1), 0.0, 0.0, 0, 0, Vector2(0.76045626, 0.58598727), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_je7p5"]
+curve = SubResource("Curve_h17s1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fm80t"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+initial_velocity_min = 9.4
+initial_velocity_max = 10.599999
+gravity = Vector3(0, -5, 0)
+damping_min = 10.0
+damping_max = 20.0
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_je7p5")
+color_ramp = SubResource("GradientTexture1D_5gtgg")
+
+[sub_resource type="Gradient" id="Gradient_5gtgg"]
+colors = PackedColorArray(0, 0.7983431, 3.85046e-07, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h17s1"]
+gradient = SubResource("Gradient_5gtgg")
+
+[sub_resource type="Curve" id="Curve_je7p5"]
+_data = [Vector2(0, 0.48248404), 0.0, 0.0, 0, 0, Vector2(0.5095057, 1), 0.0, 0.0, 0, 0, Vector2(0.7490494, 0.6066879), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_fm80t"]
+curve = SubResource("Curve_je7p5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gx1jg"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 15.0
+spread = 50.0
+initial_velocity_min = 24.5
+initial_velocity_max = 25.5
+gravity = Vector3(0, -15, 0)
+damping_min = 15.000001
+damping_max = 25.000002
+scale_min = 1.9
+scale_max = 3.1
+scale_curve = SubResource("CurveTexture_fm80t")
+color_ramp = SubResource("GradientTexture1D_h17s1")
+
 [node name="player" type="CharacterBody2D" unique_id=1202608503 groups=["player"]]
 z_index = 2
 collision_layer = 2
@@ -209,7 +266,7 @@ player_data = ExtResource("2_lvxji")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=528118252]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3j4b4")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204181045]
@@ -239,6 +296,26 @@ attack_data = ExtResource("7_0owmy")
 position = Vector2(11, 1)
 shape = SubResource("CapsuleShape2D_75vfm")
 debug_color = Color(0.6582311, 0.3219091, 1, 0.41960785)
+
+[node name="StatusEffectHandler" type="Node2D" parent="." unique_id=1240285234]
+script = ExtResource("8_qek5x")
+
+[node name="SporeParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1399445301]
+emitting = false
+lifetime = 3.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_fm80t")
+
+[node name="FireParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1180919311]
+emitting = false
+local_coords = true
+
+[node name="PoisonParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1198403413]
+emitting = false
+amount = 12
+lifetime = 3.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gx1jg")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 
