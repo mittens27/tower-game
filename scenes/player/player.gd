@@ -47,6 +47,9 @@ func _physics_process(delta):
 		is_attacking = true
 	if is_attacking:
 		state = PlayerState.ATTACK
+	elif not is_attacking:
+		attack.monitorable = false
+		attack.monitoring = false
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:

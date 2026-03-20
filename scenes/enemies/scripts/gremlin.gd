@@ -11,6 +11,10 @@ var state: EnemyState = EnemyState.WALK
 @onready var hurtbox := $Hurtbox
 @onready var sprite := $AnimatedSprite2D
 
+signal enemy_died()
+
+var room_controller: Area2D
+
 var gravity: float
 var speed: float
 
@@ -56,10 +60,8 @@ func apply_enemy_data():
 	health_component.initialize(enemy_data.max_health, enemy_data.max_health)
 	speed = enemy_data.speed
 	gravity = enemy_data.gravity
-	attack.damage = enemy_data.damage
 
 func _on_hit_received(attack_data, source_position: Vector2):
-	print("Gremlin hit.")
 	health_component.damage(attack_data.damage)
 	apply_knockback(attack_data.knockback, source_position)
 	
@@ -68,7 +70,10 @@ func apply_knockback(force, source_position: Vector2):
 	velocity = knockback_dir * force
 
 func _on_died():
+	if room_controller:
+		room_controller.on_enemy_died(self)
 	state = EnemyState.DIE
+	enemy_died.emit()
 	print("Gremlin killed.")
 	queue_free()
 

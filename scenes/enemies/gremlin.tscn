@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bq4vdw01b4vw7"]
 
 [ext_resource type="Texture2D" uid="uid://cavqdlwxgj27s" path="res://assets/sprites/enemyGremlin.png" id="1_8f2tl"]
-[ext_resource type="Script" uid="uid://bb5rsy0kt76mf" path="res://scenes/enemies/gremlin.gd" id="1_yu2v2"]
+[ext_resource type="Script" uid="uid://bb5rsy0kt76mf" path="res://scenes/enemies/scripts/gremlin.gd" id="1_yu2v2"]
 [ext_resource type="Resource" uid="uid://dvxi54kr6gaaa" path="res://resources/GremlinData.tres" id="2_80cyx"]
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="2_yu2v2"]
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="3_80cyx"]

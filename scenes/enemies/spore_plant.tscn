@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c52fo4ej1clo6"]
 
-[ext_resource type="Script" uid="uid://hk3iu0grhair" path="res://scenes/enemies/spore_plant.gd" id="1_iog80"]
+[ext_resource type="Script" uid="uid://hk3iu0grhair" path="res://scenes/enemies/scripts/spore_plant.gd" id="1_iog80"]
 [ext_resource type="Texture2D" uid="uid://gdtdqaanau8t" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/sporeplant.png" id="1_jx11b"]
 [ext_resource type="Texture2D" uid="uid://brpanedh4pga7" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/spores.png" id="2_iog80"]
 [ext_resource type="Resource" uid="uid://c383tawlrstb8" path="res://resources/SporePlantData.tres" id="2_pc0hd"]
