@@ -3,42 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cb63bmbfararf" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/lamp.png" id="1_77ytg"]
 [ext_resource type="Texture2D" uid="uid://b77cydsplmcp" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/WallLight32x32Spritesheet.png" id="2_rqajr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ddiyw"]
-atlas = ExtResource("1_77ytg")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ei0e7"]
-atlas = ExtResource("1_77ytg")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fy0ru"]
-atlas = ExtResource("1_77ytg")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qi1n1"]
-atlas = ExtResource("1_77ytg")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p06e5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ddiyw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei0e7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fy0ru")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qi1n1")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hkan"]
 atlas = ExtResource("2_rqajr")
 region = Rect2(0, 0, 32, 32)
@@ -75,15 +39,50 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddiyw"]
+atlas = ExtResource("1_77ytg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei0e7"]
+atlas = ExtResource("1_77ytg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy0ru"]
+atlas = ExtResource("1_77ytg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi1n1"]
+atlas = ExtResource("1_77ytg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p06e5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddiyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei0e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy0ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi1n1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="WallLamp" type="Node2D" unique_id=1047600918]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1006063248]
+sprite_frames = SubResource("SpriteFrames_x66iw")
+autoplay = "default"
+frame_progress = 0.72520864
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=885886587]
 sprite_frames = SubResource("SpriteFrames_p06e5")
 autoplay = "default"
 frame_progress = 0.49227098
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1006063248]
-z_index = -1
-sprite_frames = SubResource("SpriteFrames_x66iw")
-autoplay = "default"
-frame_progress = 0.72520864

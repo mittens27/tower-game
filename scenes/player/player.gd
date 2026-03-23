@@ -8,7 +8,7 @@ var state : PlayerState = PlayerState.IDLE
 @onready var hurtbox := $Hurtbox
 @onready var attack := $Attack/Hitbox
 @onready var hitbox := $Attack
-@onready var effect_handler = $StatusEffectHandler
+@onready var effect_handler := $StatusEffectHandler
 
 @export var player_data: PlayerData
 
@@ -19,6 +19,7 @@ var gravity_multiplier: float = 1.0
 var current_speed_multiplier: float = 1.0
 
 var is_attacking := false
+var spores := false
 
 func _ready():
 	apply_player_data()
@@ -39,6 +40,10 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		if spores:
+			Events.spore_jump.emit(self)
+		else:
+			Events.player_jumped.emit(self)
 		
 	# Get the input direction and handle the movement/deceleration.
 	velocity.x *= current_speed_multiplier
@@ -52,6 +57,7 @@ func _physics_process(delta):
 	if direction != 0:
 		sprite.flip_h = (direction == -1)
 		hitbox.scale.x = -1 if sprite.flip_h else 1
+		effect_handler.scale.x = -1 if sprite.flip_h else 1
 
 	move_and_slide()
 	
@@ -106,11 +112,12 @@ func _on_died():
 	print("Player died.")
 	GMan.coins = 0
 	GMan.player_health = 0
-	#Events.player_died.emit()
+	Events.entity_died.emit(self)
 	queue_free()
 
 func _on_hit_received(attack_data, source_position: Vector2):
 	health_component.damage(attack_data.damage)
+	Events.player_hurt.emit(self)
 
 func apply_attack(attack_data, source_position):
 	health_component.damage(attack_data.damage)
@@ -120,10 +127,13 @@ func _on_animated_sprite_2d_animation_finished():
 		is_attacking = false
 		
 func apply_spore_buff(duration: float, gravity_scale: float):
+	spores = true
+	Events.spores_collected.emit(self)
 	gravity_multiplier = gravity_scale
 	effect_handler.activate("spores")
 	
 	await get_tree().create_timer(duration).timeout
 	
+	spores = false
 	gravity_multiplier = 1.0
 	effect_handler.deactivate("spores")

@@ -18,6 +18,7 @@ func _process(_delta):
 func activate_switch():
 	if switch_toggled:
 		return
+	Events.switch_toggled.emit(self)
 	switch_toggled = true
 	sprite.flip_v = true
 	activated.emit(self)

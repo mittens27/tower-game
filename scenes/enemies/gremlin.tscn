@@ -59,7 +59,7 @@ radius = 5.3992605
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyr3h"]
 radius = 5.908074
 
-[node name="Gremlin" type="CharacterBody2D" unique_id=1739465047 groups=["enemies"]]
+[node name="Gremlin" type="CharacterBody2D" unique_id=1739465047 groups=["enemies", "humanoid"]]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_yu2v2")

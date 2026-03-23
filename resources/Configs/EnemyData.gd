@@ -5,3 +5,5 @@ class_name EnemyData
 @export var speed: float = 40
 @export var coin_drop: int = 1
 @export var gravity: float = 900.0
+@export var blood_gradient: Gradient
+@export var blood_scene: PackedScene

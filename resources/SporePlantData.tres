@@ -1,6 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://c383tawlrstb8"]
 
+[ext_resource type="PackedScene" uid="uid://bdnnyoe5al3ho" path="res://scenes/misc/blood_effect.tscn" id="1_oqahk"]
 [ext_resource type="Script" uid="uid://bo0sfcw3krgx8" path="res://resources/Configs/EnemyData.gd" id="1_weve4"]
+
+[sub_resource type="Gradient" id="Gradient_wlswi"]
+offsets = PackedFloat32Array(0, 0.48754448, 1)
+colors = PackedColorArray(0.33268926, 0.0012971237, 0.7172221, 1, 0.32985783, 0.0012031725, 0.5630621, 1, 1, 1, 1, 0)
 
 [resource]
 script = ExtResource("1_weve4")
@@ -8,4 +13,6 @@ max_health = 1
 speed = 0.0
 coin_drop = 0
 gravity = 0.0
+blood_gradient = SubResource("Gradient_wlswi")
+blood_scene = ExtResource("1_oqahk")
 metadata/_custom_type_script = "uid://bo0sfcw3krgx8"

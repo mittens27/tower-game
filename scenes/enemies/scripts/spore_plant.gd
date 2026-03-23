@@ -8,6 +8,11 @@ extends Node2D
 
 @export var enemy_data: EnemyData
 
+var blood_scene: PackedScene
+var blood_gradient: Gradient
+
+var last_hit_source_pos: Vector2 = Vector2.ZERO
+
 var idle_loops = 0
 var spore_active := false
 
@@ -59,10 +64,37 @@ func _on_spores_animation_finished():
 		spore_active = false
 		
 func _on_hit_received(attack_data, source_position: Vector2):
+	last_hit_source_pos = source_position
 	health_component.damage(attack_data.damage)
 	
 func _on_died():
+	var hit_position = global_position
+	call_deferred("spawn_blood", hit_position, last_hit_source_pos)
+	#spawn_blood(hit_position, last_hit_source_pos)
+	
+	Events.entity_died.emit(self)
 	queue_free()
 
 func apply_enemy_data():
 	health_component.initialize(enemy_data.max_health, enemy_data.max_health)
+	
+func spawn_blood(hit_position: Vector2, source_pos: Vector2):
+	var blood = enemy_data.blood_scene.instantiate()
+	if source_pos == Vector2.ZERO:
+		source_pos = hit_position
+	
+	var direction = hit_position - source_pos
+	
+	if direction.length() == 0:
+		direction = Vector2.RIGHT
+	else:
+		direction = direction.normalized()
+	
+	#var spawn_pos = hit_position + direction * 8 #offset position
+
+	get_tree().current_scene.add_child(blood)
+	blood.set_gradient(enemy_data.blood_gradient)
+	blood.global_position = hit_position
+	blood.set_direction(direction)
+	
+	blood.restart()

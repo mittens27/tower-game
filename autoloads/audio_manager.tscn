@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://7as68kf5dvay"]
+
+[ext_resource type="Script" uid="uid://b0iiy23caieef" path="res://scripts/managers/audio_manager.gd" id="1_tr7pb"]
+[ext_resource type="AudioStream" uid="uid://nvbdesfk54pg" path="res://assets/sounds/chiptune.wav" id="2_alnp1"]
+[ext_resource type="Resource" uid="uid://crm3ak2ii5vvg" path="res://resources/SoundLibrary.tres" id="2_xdfsh"]
+
+[node name="AudioManager" type="Node" unique_id=860854667]
+script = ExtResource("1_tr7pb")
+sound_library = ExtResource("2_xdfsh")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=168821328]
+stream = ExtResource("2_alnp1")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[node name="UISoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1782336083]
+bus = &"UI"

@@ -13,14 +13,18 @@ var state: EnemyState = EnemyState.WALK
 
 signal enemy_died()
 
-var room_controller: Area2D
+var room_controller: Node2D
 
 var gravity: float
 var speed: float
+var blood_gradient: Gradient
+var blood_scene: PackedScene
 
 var direction := 1
 var turn_cooldown := 0.1
 var turn_timer := 0.0
+
+var last_hit_source_pos: Vector2 = Vector2.ZERO
 
 func _ready():
 	apply_enemy_data()
@@ -62,6 +66,7 @@ func apply_enemy_data():
 	gravity = enemy_data.gravity
 
 func _on_hit_received(attack_data, source_position: Vector2):
+	last_hit_source_pos = source_position
 	health_component.damage(attack_data.damage)
 	apply_knockback(attack_data.knockback, source_position)
 	
@@ -70,9 +75,14 @@ func apply_knockback(force, source_position: Vector2):
 	velocity = knockback_dir * force
 
 func _on_died():
+	var hit_position = global_position
+	#spawn_blood(hit_position, last_hit_source_pos)
+	call_deferred("spawn_blood", hit_position, last_hit_source_pos)
+
 	if room_controller:
 		room_controller.on_enemy_died(self)
 	state = EnemyState.DIE
+	Events.entity_died.emit(self)
 	enemy_died.emit()
 	print("Gremlin killed.")
 	queue_free()
@@ -81,3 +91,24 @@ func turn():
 	direction *= -1
 	ground_check.position.x *= 1
 	turn_timer = turn_cooldown
+	
+func spawn_blood(hit_position: Vector2, source_pos: Vector2):
+	var blood = enemy_data.blood_scene.instantiate()
+	if source_pos == Vector2.ZERO:
+		source_pos = hit_position
+	
+	var direction = hit_position - source_pos
+	
+	if direction.length() == 0:
+		direction = Vector2.RIGHT
+	else:
+		direction = direction.normalized()
+	
+	#var spawn_pos = hit_position + direction * 8 #offset position
+
+	get_tree().current_scene.add_child(blood)
+	blood.set_gradient(enemy_data.blood_gradient)
+	blood.global_position = hit_position
+	blood.set_direction(direction)
+	
+	blood.restart()

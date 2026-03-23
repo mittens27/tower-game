@@ -140,7 +140,7 @@ size = Vector2(12, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spdh0"]
 size = Vector2(16, 16)
 
-[node name="SporePlant" type="Node2D" unique_id=1666185827]
+[node name="SporePlant" type="Node2D" unique_id=1666185827 groups=["enemies"]]
 script = ExtResource("1_iog80")
 enemy_data = ExtResource("2_pc0hd")
 

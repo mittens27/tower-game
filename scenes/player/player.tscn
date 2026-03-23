@@ -256,6 +256,37 @@ scale_max = 3.1
 scale_curve = SubResource("CurveTexture_fm80t")
 color_ramp = SubResource("GradientTexture1D_h17s1")
 
+[sub_resource type="Gradient" id="Gradient_h17s1"]
+offsets = PackedFloat32Array(0, 0.4978903, 1)
+colors = PackedColorArray(0.40784314, 0, 0, 1, 0.5411765, 0, 0, 0.7058824, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qek5x"]
+gradient = SubResource("Gradient_h17s1")
+
+[sub_resource type="Curve" id="Curve_fm80t"]
+_data = [Vector2(0, 0.04777074), 0.0, 0.0, 0, 0, Vector2(0.34600762, 1), 0.0, 0.0, 0, 0, Vector2(0.72243345, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gtgg"]
+curve = SubResource("Curve_fm80t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugbui"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 10.0
+emission_ring_radius = 7.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 44.5
+spread = 50.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 5, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_5gtgg")
+color_ramp = SubResource("GradientTexture1D_qek5x")
+
 [node name="player" type="CharacterBody2D" unique_id=1202608503 groups=["player"]]
 z_index = 2
 collision_layer = 2
@@ -266,7 +297,7 @@ player_data = ExtResource("2_lvxji")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=528118252]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3j4b4")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204181045]
@@ -311,11 +342,23 @@ emitting = false
 local_coords = true
 
 [node name="PoisonParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1198403413]
+rotation = -1.5707964
 emitting = false
-amount = 12
+amount = 20
 lifetime = 3.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_gx1jg")
+
+[node name="BloodParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1940143901]
+position = Vector2(19.43, 0.975)
+emitting = false
+amount = 12
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.7
+randomness = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ugbui")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 

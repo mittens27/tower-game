@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bdnnyoe5al3ho"]
+
+[ext_resource type="Script" uid="uid://dx43c2h4yturg" path="res://scenes/misc/blood_effect.gd" id="1_guolg"]
+
+[sub_resource type="Gradient" id="Gradient_521ph"]
+offsets = PackedFloat32Array(0, 0.4978903, 1)
+colors = PackedColorArray(0.40784314, 0, 0, 1, 0.5411765, 0, 0, 0.7058824, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2jnc4"]
+gradient = SubResource("Gradient_521ph")
+
+[sub_resource type="Curve" id="Curve_guolg"]
+_data = [Vector2(0, 0.04777074), 0.0, 0.0, 0, 0, Vector2(0.34600762, 1), 0.0, 0.0, 0, 0, Vector2(0.72243345, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kdcby"]
+curve = SubResource("Curve_guolg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xyji5"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 10.0
+emission_ring_radius = 7.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 44.5
+spread = 50.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 5, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_kdcby")
+color_ramp = SubResource("GradientTexture1D_2jnc4")
+
+[node name="BloodEffect" type="GPUParticles2D" unique_id=1749520210]
+emitting = false
+amount = 12
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.7
+randomness = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xyji5")
+script = ExtResource("1_guolg")

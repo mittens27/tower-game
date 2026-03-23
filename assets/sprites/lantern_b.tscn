@@ -63,3 +63,5 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_wh57i")
 autoplay = "default"
 frame_progress = 0.76643384
+centered = false
+offset = Vector2(-4, -3)

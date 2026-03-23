@@ -2,10 +2,10 @@ extends TileMapLayer
 
 @export var fade_time := 0.5
 
-
 func _ready():
 	collision_enabled = true
-
+	visible = true
+	
 func open():
 	collision_enabled = false
 	fade_out()

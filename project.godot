@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="The Tower"
-run/main_scene="uid://3ma0u6igh4ll"
+run/main_scene="uid://cg5m4ofd65l"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
 Events="*uid://dwpmq64tack5q"
 GMan="*uid://dsyn5v24eikqa"
+AudioManager="*uid://7as68kf5dvay"
 
 [input]
 

@@ -3,7 +3,8 @@ extends Node2D
 @onready var effects = {
 	"spores": $SporeParticles,
 	"fire": $FireParticles,
-	"poison": $PoisonParticles
+	"poison": $PoisonParticles,
+	"blood": $BloodParticles
 }
 
 var active_counts := {}
