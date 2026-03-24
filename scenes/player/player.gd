@@ -113,6 +113,7 @@ func _on_died():
 	GMan.coins = 0
 	GMan.player_health = 0
 	Events.entity_died.emit(self)
+	Events.player_died.emit()
 	queue_free()
 
 func _on_hit_received(attack_data, source_position: Vector2):

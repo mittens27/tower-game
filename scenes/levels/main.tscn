@@ -1,7 +1,10 @@
 [gd_scene format=4 uid="uid://cg5m4ofd65l"]
 
+[ext_resource type="Script" uid="uid://jx3olxtqi5r4" path="res://scenes/levels/ui.gd" id="1_im81g"]
+[ext_resource type="FontFile" uid="uid://byomunl3crhs0" path="res://assets/fonts/PressStart2P.ttf" id="1_qy6q0"]
 [ext_resource type="PackedScene" uid="uid://dao1g4beyb5jy" path="res://scenes/player/player.tscn" id="1_y0acb"]
 [ext_resource type="Texture2D" uid="uid://b8rjk4ddaj1s2" path="res://assets/tiles/Trampoor Dungeon Tiles/TrapmoorTileset_v03.png" id="2_j4d2a"]
+[ext_resource type="Texture2D" uid="uid://b8o1ybbgyt8bj" path="res://assets/sprites/healthBar.png" id="2_ykry0"]
 [ext_resource type="Texture2D" uid="uid://bg6ep38herthx" path="res://assets/tiles/Dungeon Tile Set.png" id="3_u81e1"]
 [ext_resource type="PackedScene" uid="uid://wb7f065mmph1" path="res://scenes/levels/World Items/wall_lamp.tscn" id="4_j4d2a"]
 [ext_resource type="PackedScene" uid="uid://bbmqj2xk7m4qp" path="res://scenes/levels/World Items/switch.tscn" id="5_b6bv0"]
@@ -21,6 +24,57 @@
 [ext_resource type="PackedScene" uid="uid://dm1f56fedieo2" path="res://scenes/levels/World Items/dungeon_door.tscn" id="17_7exfm"]
 [ext_resource type="PackedScene" uid="uid://cdfh6s2fwetix" path="res://scenes/levels/World Items/jump_flower.tscn" id="19_px1c8"]
 [ext_resource type="PackedScene" uid="uid://ddbbacp40g7ye" path="res://scenes/levels/World Items/water_zone.tscn" id="20_xgklb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im81g"]
+atlas = ExtResource("2_ykry0")
+region = Rect2(282, 0, 94, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysjpo"]
+atlas = ExtResource("2_ykry0")
+region = Rect2(188, 0, 94, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gexqn"]
+atlas = ExtResource("2_ykry0")
+region = Rect2(94, 0, 94, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc8j3"]
+atlas = ExtResource("2_ykry0")
+region = Rect2(0, 0, 94, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5eww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im81g")
+}],
+"loop": false,
+"name": &"0_hearts",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysjpo")
+}],
+"loop": false,
+"name": &"1_heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gexqn")
+}],
+"loop": false,
+"name": &"2_hearts",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc8j3")
+}],
+"loop": false,
+"name": &"3_hearts",
+"speed": 5.0
+}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b6bv0"]
 texture = ExtResource("2_j4d2a")
@@ -1334,6 +1388,56 @@ sources/0 = SubResource("TileSetAtlasSource_vkq25")
 size = Vector2(112, 16)
 
 [node name="main" type="Node2D" unique_id=521956849]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1976237415]
+script = ExtResource("1_im81g")
+
+[node name="Name" type="Label" parent="UI" unique_id=1412971475]
+offset_left = 31.835
+offset_top = 26.0
+offset_right = 115.835
+offset_bottom = 47.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.42352942, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_qy6q0")
+theme_override_font_sizes/font_size = 21
+text = "KARL"
+
+[node name="Coins" type="Label" parent="UI" unique_id=206724185]
+offset_left = 963.095
+offset_top = 26.0
+offset_right = 1131.0952
+offset_bottom = 49.0
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_qy6q0")
+theme_override_font_sizes/font_size = 21
+text = "Coins: 0"
+
+[node name="DeathNote" type="Label" parent="UI" unique_id=369820100]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.5
+offset_top = -11.5
+offset_right = 220.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6056738, 1.6605109e-06, 3.85046e-07, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("1_qy6q0")
+theme_override_font_sizes/font_size = 21
+text = "You Have Been Felled."
+
+[node name="healthBar" type="AnimatedSprite2D" parent="UI" unique_id=199003651]
+position = Vector2(77.245, 62.425)
+sprite_frames = SubResource("SpriteFrames_e5eww")
+animation = &"3_hearts"
+autoplay = "3_hearts"
 
 [node name="player" parent="." unique_id=1202608503 instance=ExtResource("1_y0acb")]
 z_index = 0
