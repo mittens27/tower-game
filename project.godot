@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 Events="*uid://dwpmq64tack5q"
 GMan="*uid://dsyn5v24eikqa"
 AudioManager="*uid://7as68kf5dvay"
+Scenes="*uid://cq4a4af5pb153"
 
 [input]
 

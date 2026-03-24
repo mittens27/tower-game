@@ -21,6 +21,8 @@ var current_speed_multiplier: float = 1.0
 var is_attacking := false
 var spores := false
 
+var facing_direction := 1
+
 func _ready():
 	apply_player_data()
 	
@@ -58,6 +60,7 @@ func _physics_process(delta):
 		sprite.flip_h = (direction == -1)
 		hitbox.scale.x = -1 if sprite.flip_h else 1
 		effect_handler.scale.x = -1 if sprite.flip_h else 1
+		facing_direction = -1 if sprite.flip_h else 1
 
 	move_and_slide()
 	

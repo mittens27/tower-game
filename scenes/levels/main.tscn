@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cg5m4ofd65l"]
 
+[ext_resource type="Script" uid="uid://c4nnl6c1y4jp8" path="res://scenes/levels/main.gd" id="1_gexqn"]
 [ext_resource type="Script" uid="uid://jx3olxtqi5r4" path="res://scenes/levels/ui.gd" id="1_im81g"]
 [ext_resource type="FontFile" uid="uid://byomunl3crhs0" path="res://assets/fonts/PressStart2P.ttf" id="1_qy6q0"]
 [ext_resource type="PackedScene" uid="uid://dao1g4beyb5jy" path="res://scenes/player/player.tscn" id="1_y0acb"]
@@ -8,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bg6ep38herthx" path="res://assets/tiles/Dungeon Tile Set.png" id="3_u81e1"]
 [ext_resource type="PackedScene" uid="uid://wb7f065mmph1" path="res://scenes/levels/World Items/wall_lamp.tscn" id="4_j4d2a"]
 [ext_resource type="PackedScene" uid="uid://bbmqj2xk7m4qp" path="res://scenes/levels/World Items/switch.tscn" id="5_b6bv0"]
+[ext_resource type="Script" uid="uid://ck82ku74u8sfg" path="res://scenes/levels/camera_2d.gd" id="5_ysjpo"]
 [ext_resource type="PackedScene" uid="uid://cmlr33soqx87t" path="res://scenes/levels/World Items/log_door.tscn" id="6_ubwgw"]
 [ext_resource type="PackedScene" uid="uid://duh335brfcb5j" path="res://scenes/levels/World Items/platform.tscn" id="7_ubwgw"]
 [ext_resource type="PackedScene" uid="uid://6tgalkaa8ql3" path="res://assets/tiles/trapmoor_water.tscn" id="7_y56qp"]
@@ -1388,6 +1390,7 @@ sources/0 = SubResource("TileSetAtlasSource_vkq25")
 size = Vector2(112, 16)
 
 [node name="main" type="Node2D" unique_id=521956849]
+script = ExtResource("1_gexqn")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1976237415]
 script = ExtResource("1_im81g")
@@ -1443,10 +1446,13 @@ autoplay = "3_hearts"
 z_index = 0
 position = Vector2(0, 4)
 
-[node name="Camera2D" type="Camera2D" parent="player" unique_id=1961350011]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1961350011 node_paths=PackedStringArray("player")]
+position = Vector2(0, 4)
 offset = Vector2(41.05, 0)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+script = ExtResource("5_ysjpo")
+player = NodePath("../player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=873144177]
 tile_set = SubResource("TileSet_vkq25")
