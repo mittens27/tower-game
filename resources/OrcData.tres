@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://desmm7otx5fgq"]
+
+[ext_resource type="Script" uid="uid://bo0sfcw3krgx8" path="res://resources/Configs/EnemyData.gd" id="1_lclll"]
+[ext_resource type="PackedScene" uid="uid://bdnnyoe5al3ho" path="res://scenes/misc/blood_effect.tscn" id="1_uwj7t"]
+
+[sub_resource type="Gradient" id="Gradient_uwj7t"]
+offsets = PackedFloat32Array(0, 0.52669036, 1)
+colors = PackedColorArray(0.11372549, 0, 0, 1, 0.101960786, 0, 0, 0.8117647, 1, 1, 1, 0)
+
+[resource]
+script = ExtResource("1_lclll")
+blood_gradient = SubResource("Gradient_uwj7t")
+blood_scene = ExtResource("1_uwj7t")
+metadata/_custom_type_script = "uid://bo0sfcw3krgx8"
