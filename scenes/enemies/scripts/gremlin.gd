@@ -10,6 +10,7 @@ var state: EnemyState = EnemyState.WALK
 @onready var health_component := $HealthComponent
 @onready var hurtbox := $Hurtbox
 @onready var sprite := $AnimatedSprite2D
+@onready var eyes := $eyes
 
 signal enemy_died()
 
@@ -20,7 +21,7 @@ var speed: float
 var blood_gradient: Gradient
 var blood_scene: PackedScene
 
-var direction := 1
+var facing_direction := 1
 var turn_cooldown := 0.1
 var turn_timer := 0.0
 
@@ -55,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			sprite.play("idle")
 		EnemyState.WALK:
 			sprite.play("walk")
-			velocity.x = direction * speed
+			velocity.x = facing_direction * speed
 		EnemyState.DIE:
 			velocity.x = 0
 			remove_from_group("enemies")
@@ -88,8 +89,9 @@ func _on_died():
 	queue_free()
 
 func turn():
-	direction *= -1
+	facing_direction *= -1
 	ground_check.position.x *= 1
+	eyes.offset.x *= -1
 	turn_timer = turn_cooldown
 	
 func spawn_blood(hit_position: Vector2, source_pos: Vector2):

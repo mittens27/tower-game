@@ -1,7 +1,48 @@
 [gd_scene format=3 uid="uid://bbmqj2xk7m4qp"]
 
 [ext_resource type="Script" uid="uid://boygy7u84mdn0" path="res://scripts/utilities/switch.gd" id="1_e8n4d"]
-[ext_resource type="Texture2D" uid="uid://b8rjk4ddaj1s2" path="res://assets/tiles/Trampoor Dungeon Tiles/TrapmoorTileset_v03.png" id="2_0so6x"]
+[ext_resource type="Texture2D" uid="uid://bg5w2ekvow5kb" path="res://assets/sprites/Andy Assets/lever.png" id="2_f2428"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nof2g"]
+atlas = ExtResource("2_f2428")
+region = Rect2(0, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1jej"]
+atlas = ExtResource("2_f2428")
+region = Rect2(0, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2lko"]
+atlas = ExtResource("2_f2428")
+region = Rect2(17, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsexl"]
+atlas = ExtResource("2_f2428")
+region = Rect2(34, 17, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nkrnp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nof2g")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1jej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2lko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsexl")
+}],
+"loop": false,
+"name": &"on",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fus7o"]
 size = Vector2(58, 76)
@@ -9,11 +50,12 @@ size = Vector2(58, 76)
 [node name="switch" type="Node2D" unique_id=1175417536]
 script = ExtResource("1_e8n4d")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=275159278]
-position = Vector2(-8, -1)
-texture = ExtResource("2_0so6x")
-region_enabled = true
-region_rect = Rect2(48, 112, 16, 16)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1661139336]
+sprite_frames = SubResource("SpriteFrames_nkrnp")
+animation = &"on"
+autoplay = "off"
+frame = 2
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=806882372]
 collision_layer = 256

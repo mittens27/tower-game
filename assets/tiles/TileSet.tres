@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://omyobndquv3f"]
 
 [ext_resource type="Texture2D" uid="uid://b8rjk4ddaj1s2" path="res://assets/tiles/Trampoor Dungeon Tiles/TrapmoorTileset_v03.png" id="1_eny38"]
+[ext_resource type="Texture2D" uid="uid://bhqwbq7xuthem" path="res://assets/tiles/Dungeon Tile Set Normal Map.png" id="2_3kqai"]
 [ext_resource type="Texture2D" uid="uid://bg6ep38herthx" path="res://assets/tiles/Dungeon Tile Set.png" id="2_vdvgb"]
 [ext_resource type="PackedScene" uid="uid://wb7f065mmph1" path="res://scenes/levels/World Items/wall_lamp.tscn" id="3_3kqai"]
 [ext_resource type="PackedScene" uid="uid://bbmqj2xk7m4qp" path="res://scenes/levels/World Items/switch.tscn" id="4_rqjnc"]
@@ -325,8 +326,12 @@ texture = ExtResource("1_eny38")
 10:7/0 = 0
 11:7/0 = 0
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_rqjnc"]
+diffuse_texture = ExtResource("2_vdvgb")
+normal_texture = ExtResource("2_3kqai")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubwgw"]
-texture = ExtResource("2_vdvgb")
+texture = SubResource("CanvasTexture_rqjnc")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0

@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://csydap2jgm6ks" path="res://resources/SporeAttack.tres" id="5_6h6fh"]
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="6_pqq6c"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="7_pc0hd"]
+[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="9_ghff2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgjw6"]
 atlas = ExtResource("1_jx11b")
@@ -145,17 +146,44 @@ script = ExtResource("1_iog80")
 enemy_data = ExtResource("2_pc0hd")
 
 [node name="Plant" type="AnimatedSprite2D" parent="." unique_id=1597647949]
+light_mask = 2
 sprite_frames = SubResource("SpriteFrames_ge114")
 animation = &"spores"
 autoplay = "idle"
 frame = 3
 frame_progress = 1.0
 
+[node name="PointLight2D5" type="PointLight2D" parent="Plant" unique_id=1761199164]
+position = Vector2(-0.20716095, -0.42507553)
+color = Color(0.6073548, 0.084555335, 0.77938527, 0.68600005)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("9_ghff2")
+texture_scale = 0.33
+
+[node name="PointLight2D6" type="PointLight2D" parent="Plant" unique_id=172500443]
+position = Vector2(-0.20716095, -0.42507553)
+color = Color(0.7606741, 0.22995201, 0.9567091, 0.6862745)
+energy = 1.75
+range_item_cull_mask = 2
+shadow_enabled = true
+texture = ExtResource("9_ghff2")
+texture_scale = 0.25
+
 [node name="Spores" type="AnimatedSprite2D" parent="." unique_id=340923921]
 position = Vector2(25, 0)
 sprite_frames = SubResource("SpriteFrames_ayxn8")
 animation = &"spores"
 frame = 2
+
+[node name="PointLight2D7" type="PointLight2D" parent="Spores" unique_id=1173386488]
+position = Vector2(-2.234974, -0.05653763)
+color = Color(0.66919136, 0.12003247, 0.8556824, 0.6862745)
+energy = 1.75
+shadow_enabled = true
+texture = ExtResource("9_ghff2")
+texture_scale = 0.25
+height = 1.0
 
 [node name="Attack" type="Node2D" parent="." unique_id=1636569885]
 

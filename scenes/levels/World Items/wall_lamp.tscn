@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://wb7f065mmph1"]
 
 [ext_resource type="Texture2D" uid="uid://cb63bmbfararf" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/lamp.png" id="1_77ytg"]
+[ext_resource type="Script" uid="uid://nklkf1dxis47" path="res://scenes/levels/World Items/wall_lamp.gd" id="1_ss0t3"]
 [ext_resource type="Texture2D" uid="uid://b77cydsplmcp" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/WallLight32x32Spritesheet.png" id="2_rqajr"]
+[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="4_4ieln"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hkan"]
 atlas = ExtResource("2_rqajr")
@@ -76,13 +78,33 @@ animations = [{
 }]
 
 [node name="WallLamp" type="Node2D" unique_id=1047600918]
+script = ExtResource("1_ss0t3")
+
+[node name="lantern_light_outer" type="PointLight2D" parent="." unique_id=316566096]
+color = Color(0.94905585, 0.43917835, 0, 0.68700004)
+energy = 5.48
+shadow_enabled = true
+texture = ExtResource("4_4ieln")
+texture_scale = 0.4
+height = 1.0
+
+[node name="lantern_light_inner" type="PointLight2D" parent="." unique_id=1299751784]
+color = Color(0.94905585, 0.43917835, 0, 0.68700004)
+energy = 1.75
+range_item_cull_mask = 2
+shadow_enabled = true
+texture = ExtResource("4_4ieln")
+texture_scale = 0.25
+height = 1.0
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1006063248]
+light_mask = 2
 sprite_frames = SubResource("SpriteFrames_x66iw")
 autoplay = "default"
 frame_progress = 0.72520864
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=885886587]
+light_mask = 2
 sprite_frames = SubResource("SpriteFrames_p06e5")
 autoplay = "default"
 frame_progress = 0.49227098

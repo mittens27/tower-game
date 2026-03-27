@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var sprite := $Sprite2D
+@onready var sprite := $AnimatedSprite2D
 
 var switch_toggled := false
 var player_inside := false
@@ -20,7 +20,7 @@ func activate_switch():
 		return
 	Events.switch_toggled.emit(self)
 	switch_toggled = true
-	sprite.flip_v = true
+	sprite.play("on")
 	activated.emit(self)
 
 func _on_area_2d_body_entered(body):

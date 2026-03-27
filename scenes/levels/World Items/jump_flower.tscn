@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bskly4k7qn2ru" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/TallPlantTop.png" id="1_1drep"]
 [ext_resource type="Script" uid="uid://0glu6jxae6n2" path="res://scenes/levels/World Items/jump_flower.gd" id="1_qlutl"]
 [ext_resource type="Texture2D" uid="uid://cbpp0mo1uy20l" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/TallPlantBottom.png" id="2_qlutl"]
+[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="4_5keqa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5keqa"]
 atlas = ExtResource("1_1drep")
@@ -107,12 +108,14 @@ color_ramp = SubResource("GradientTexture1D_5keqa")
 script = ExtResource("1_qlutl")
 
 [node name="bulb" type="AnimatedSprite2D" parent="." unique_id=1233838359]
+light_mask = 2
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_muaqm")
 autoplay = "default"
 frame_progress = 0.38181
 
 [node name="stalk" type="AnimatedSprite2D" parent="." unique_id=1986829650]
+light_mask = 2
 sprite_frames = SubResource("SpriteFrames_uhwyo")
 autoplay = "default"
 frame_progress = 0.9509038
@@ -135,5 +138,23 @@ lifetime = 4.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_4uvhd")
+
+[node name="PointLight2D5" type="PointLight2D" parent="." unique_id=816498506]
+position = Vector2(0.33818054, -3.7476807)
+color = Color(0.12235027, 0.35033542, 0.9865208, 0.6862745)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("4_5keqa")
+texture_scale = 0.33
+height = 1.0
+
+[node name="PointLight2D6" type="PointLight2D" parent="." unique_id=1094545456]
+position = Vector2(0.33818054, -3.7476807)
+color = Color(0.25030932, 0.46963003, 0.9960334, 0.614)
+range_item_cull_mask = 2
+shadow_enabled = true
+texture = ExtResource("4_5keqa")
+texture_scale = 0.2
+height = 1.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

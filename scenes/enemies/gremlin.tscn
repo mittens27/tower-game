@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="3_80cyx"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="4_wjuu7"]
 [ext_resource type="Resource" uid="uid://cytq5palccj62" path="res://resources/EnemyTouchAttackData.tres" id="5_wjuu7"]
+[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="8_2jnc4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jnc4"]
 atlas = ExtResource("1_8f2tl")
@@ -66,6 +67,7 @@ script = ExtResource("1_yu2v2")
 enemy_data = ExtResource("2_80cyx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=60255234]
+light_mask = 2
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_h1nml")
 animation = &"walk"
@@ -103,6 +105,15 @@ invulnerability_time = 0.0
 position = Vector2(0, 1.5694332)
 shape = SubResource("CircleShape2D_jyr3h")
 debug_color = Color(0.2494027, 0.6358461, 0, 0.41960785)
+
+[node name="eyes" type="PointLight2D" parent="." unique_id=620591925]
+color = Color(1, 1, 0.38109186, 0.83100003)
+energy = 2.0
+range_item_cull_mask = 2
+texture = ExtResource("8_2jnc4")
+offset = Vector2(3.835, -2.25)
+texture_scale = 0.02
+height = 1.0
 
 [editable path="Attack/Hitbox"]
 [editable path="HealthComponent"]

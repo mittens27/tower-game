@@ -396,7 +396,7 @@ radius = 5.0820103
 height = 16.081158
 
 [node name="Cat" type="CharacterBody2D" unique_id=470188049]
-collision_layer = 2
+collision_layer = 1024
 script = ExtResource("1_26kwq")
 enemy_data = ExtResource("2_d1u2y")
 

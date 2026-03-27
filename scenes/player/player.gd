@@ -9,6 +9,9 @@ var state : PlayerState = PlayerState.IDLE
 @onready var attack := $Attack/Hitbox
 @onready var hitbox := $Attack
 @onready var effect_handler := $StatusEffectHandler
+@onready var collision_box := $CollisionShape2D
+@onready var light_inner := $PlayerLight2
+@onready var light_outer := $PlayerLight
 
 @export var player_data: PlayerData
 
@@ -61,7 +64,16 @@ func _physics_process(delta):
 		hitbox.scale.x = -1 if sprite.flip_h else 1
 		effect_handler.scale.x = -1 if sprite.flip_h else 1
 		facing_direction = -1 if sprite.flip_h else 1
+		collision_box.position.x = 2 if sprite.flip_h else -2
 
+	#move pushable objects
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider.is_in_group("pushable"):
+			collider.apply_push(velocity.x)
+			
 	move_and_slide()
 	
 	#State Machine
@@ -135,9 +147,20 @@ func apply_spore_buff(duration: float, gravity_scale: float):
 	Events.spores_collected.emit(self)
 	gravity_multiplier = gravity_scale
 	effect_handler.activate("spores")
+	light_colour("spore_colours")
 	
 	await get_tree().create_timer(duration).timeout
 	
 	spores = false
 	gravity_multiplier = 1.0
 	effect_handler.deactivate("spores")
+	light_colour("spore_colours")
+	
+func light_colour(type):
+	var dim_time = 0.5
+	var tween = create_tween()
+	if type == "spore_colours":
+		var target_color_one = Color(0.94, 0.43, 0.00, 0.68) if not spores else Color(0.176, 0.396, 1.0, 0.753)
+		var target_color_two = Color(0.99, 0.48, 0.13, 0.68) if not spores else Color(0.248, 0.461, 1.0, 0.753)
+		tween.tween_property(light_outer, "color", target_color_one, dim_time)
+		tween.tween_property(light_inner, "color", target_color_two, dim_time)

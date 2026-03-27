@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="6_75vfm"]
 [ext_resource type="Resource" uid="uid://cflgu8ipnrtd5" path="res://resources/SwordAttack.tres" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://bdgnt4radvneq" path="res://scenes/player/status_effect_handler.gd" id="8_qek5x"]
+[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="9_h17s1"]
+[ext_resource type="Script" uid="uid://beqmulvq8mfrm" path="res://scenes/player/player_light.gd" id="10_je7p5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
 atlas = ExtResource("1_8afob")
@@ -290,14 +292,15 @@ color_ramp = SubResource("GradientTexture1D_qek5x")
 [node name="player" type="CharacterBody2D" unique_id=1202608503 groups=["player"]]
 z_index = 2
 collision_layer = 2
-collision_mask = 261
+collision_mask = 773
 script = ExtResource("1_dovo2")
 player_data = ExtResource("2_lvxji")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=528118252]
+light_mask = 2
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3j4b4")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204181045]
@@ -312,6 +315,7 @@ collision_layer = 16
 collision_mask = 32
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=939149868]
+visible = false
 position = Vector2(-2, 1)
 shape = SubResource("CapsuleShape2D_p47bc")
 debug_color = Color(0.9764706, 0, 0, 0.41960785)
@@ -324,6 +328,7 @@ collision_mask = 64
 attack_data = ExtResource("7_0owmy")
 
 [node name="CollisionShape2D" parent="Attack/Hitbox" index="0" unique_id=1718400250]
+visible = false
 position = Vector2(11, 1)
 shape = SubResource("CapsuleShape2D_75vfm")
 debug_color = Color(0.6582311, 0.3219091, 1, 0.41960785)
@@ -359,6 +364,22 @@ explosiveness = 0.7
 randomness = 0.5
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ugbui")
+
+[node name="PlayerLight" type="PointLight2D" parent="." unique_id=1590945527]
+position = Vector2(-0.29000854, -0.98498535)
+color = Color(0.9490196, 0.4392157, 0, 0.6862745)
+energy = 5.48
+texture = ExtResource("9_h17s1")
+texture_scale = 0.3
+script = ExtResource("10_je7p5")
+
+[node name="PlayerLight2" type="PointLight2D" parent="." unique_id=1073994456]
+position = Vector2(-0.29000854, -0.98498535)
+color = Color(0.99999994, 0.48882443, 0.13142455, 0.6862745)
+energy = 1.75
+range_item_cull_mask = 2
+texture = ExtResource("9_h17s1")
+texture_scale = 0.25
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 

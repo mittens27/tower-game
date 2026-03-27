@@ -1,0 +1,17 @@
+extends PointLight2D
+
+var base_energy := 5.48
+var energy_variation := 0.4
+
+var base_scale := Vector2.ONE
+var scale_variation := 0.04
+
+var flicker_timer := 0.0
+var flicker_speed := 0.1 #seconds
+
+func _process(delta):
+	flicker_timer -= delta
+	if flicker_timer <= 0:
+		flicker_timer = flicker_speed
+		energy = base_energy + randf_range(-energy_variation, energy_variation)
+		scale = base_scale + Vector2(randf_range(-scale_variation, scale_variation), randf_range(-scale_variation, scale_variation))
