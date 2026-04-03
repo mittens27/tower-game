@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tlysgh7w5uoy"
-path="res://.godot/imported/Dungeon Tile Set Normal Map-export.png-4c905df72b920a1c0a61a1a9f032baed.ctex"
+uid="uid://ve85g6sbo71j"
+path="res://.godot/imported/crate_n.png-6e137913a33625bfca1da7dc188f5e42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/Dungeon Tile Set Normal Map-export.png"
-dest_files=["res://.godot/imported/Dungeon Tile Set Normal Map-export.png-4c905df72b920a1c0a61a1a9f032baed.ctex"]
+source_file="res://assets/sprites/Andy Assets/crate_n.png"
+dest_files=["res://.godot/imported/crate_n.png-6e137913a33625bfca1da7dc188f5e42.ctex"]
 
 [params]
 

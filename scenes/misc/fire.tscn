@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bfrbrvymuu1ix"]
+
+[ext_resource type="Texture2D" uid="uid://djbyu6222145d" path="res://assets/sprites/fire.png" id="1_bhx1w"]
+[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://point_light_2d.gd" id="2_1ok1q"]
+[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="2_4q7o2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q7o2"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4aei"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(16, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwpdy"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(32, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei46i"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(48, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8pat"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(64, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03mjc"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(80, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqh6r"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(96, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvtws"]
+atlas = ExtResource("1_bhx1w")
+region = Rect2(112, 0, 16, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxr70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q7o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4aei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwpdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei46i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8pat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03mjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqh6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvtws")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="fire" type="AnimatedSprite2D" unique_id=1001483884]
+sprite_frames = SubResource("SpriteFrames_cxr70")
+autoplay = "default"
+frame_progress = 0.16201107
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1187655794]
+position = Vector2(0, 3.995)
+color = Color(0.7, 0.30333334, 0, 0.8745098)
+energy = 8.0
+texture = ExtResource("2_4q7o2")
+texture_scale = 0.4
+height = 4.0
+script = ExtResource("2_1ok1q")

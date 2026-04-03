@@ -1,18 +1,27 @@
 [gd_scene format=3 uid="uid://c6gorgpaeiql1"]
 
 [ext_resource type="Script" uid="uid://dyjs38wv2m8bd" path="res://scenes/misc/crate.gd" id="1_aofd6"]
-[ext_resource type="Texture2D" uid="uid://g3l2qahlhv5d" path="res://assets/sprites/Andy Assets/crate.png" id="1_plfh0"]
+[ext_resource type="Texture2D" uid="uid://i8vblil5t8qt" path="res://assets/sprites/Andy Assets/crate2.png" id="2_jydau"]
+[ext_resource type="Texture2D" uid="uid://ve85g6sbo71j" path="res://assets/sprites/Andy Assets/crate_n.png" id="3_fp64x"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_o3hya"]
+diffuse_texture = ExtResource("2_jydau")
+normal_texture = ExtResource("3_fp64x")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jydau"]
-size = Vector2(16, 16)
+size = Vector2(16, 15)
 
 [node name="Crate" type="CharacterBody2D" unique_id=1891971127 groups=["pushable"]]
+z_index = -2
 collision_layer = 512
 collision_mask = 3
 script = ExtResource("1_aofd6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1367634669]
-texture = ExtResource("1_plfh0")
+z_index = -2
+position = Vector2(0, -8)
+texture = SubResource("CanvasTexture_o3hya")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1525899204]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_jydau")

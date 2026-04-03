@@ -1,22 +1,27 @@
 [gd_scene format=3 uid="uid://duh335brfcb5j"]
 
 [ext_resource type="Script" uid="uid://daedj7losgl8a" path="res://scripts/utilities/platform.gd" id="1_e73be"]
-[ext_resource type="Texture2D" uid="uid://b8rjk4ddaj1s2" path="res://assets/tiles/Trampoor Dungeon Tiles/TrapmoorTileset_v03.png" id="2_w8yvx"]
+[ext_resource type="Texture2D" uid="uid://dwrcckl2teovt" path="res://assets/tiles/AndyTiles/AndyTiles_v4.png" id="2_v1yiy"]
+[ext_resource type="Texture2D" uid="uid://b2qe7gk6y221c" path="res://assets/tiles/AndyTiles/AndyTiles_v4_n.png" id="3_mvcag"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gcbxe"]
+diffuse_texture = ExtResource("2_v1yiy")
+normal_texture = ExtResource("3_mvcag")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bdwb"]
 size = Vector2(48, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qa2u0"]
-size = Vector2(48, 8)
+size = Vector2(48, 5)
 
 [node name="platform" type="StaticBody2D" unique_id=1876451469]
 collision_mask = 2
 script = ExtResource("1_e73be")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=84021175]
-texture = ExtResource("2_w8yvx")
+texture = SubResource("CanvasTexture_gcbxe")
 region_enabled = true
-region_rect = Rect2(32, 80, 48, 16)
+region_rect = Rect2(112, 144, 48, 16)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1170418960]
 collision_layer = 256
@@ -28,7 +33,7 @@ shape = SubResource("RectangleShape2D_7bdwb")
 debug_color = Color(0.25059223, 0.84152454, 0, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1048916430]
-position = Vector2(0, -4)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_qa2u0")
 debug_color = Color(0.96925265, 1.92523e-07, 0.46568823, 0.41960785)
 

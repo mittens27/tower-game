@@ -14,6 +14,7 @@ var state : PlayerState = PlayerState.IDLE
 @onready var light_outer := $PlayerLight
 
 @export var player_data: PlayerData
+@export var drop_through_time := 0.2
 
 const SPEED = 175.0
 const JUMP_VELOCITY = -250.0
@@ -26,6 +27,9 @@ var spores := false
 
 var facing_direction := 1
 
+var dropping := false
+const ONE_WAY_LAYER := 12
+
 func _ready():
 	apply_player_data()
 	
@@ -37,18 +41,19 @@ func _ready():
 	attack.monitoring = false
 	
 func _physics_process(delta):
+	#one way platforms
+	var input_down := Input.is_action_pressed("ui_down")
+	var jump_pressed := Input.is_action_just_pressed("ui_accept")
+	
+	if input_down and jump_pressed and is_on_one_way_platform():
+		drop_through_platform()
+	elif jump_pressed:
+		jump()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		var applied_gravity = get_gravity() * gravity_multiplier
 		velocity += applied_gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		if spores:
-			Events.spore_jump.emit(self)
-		else:
-			Events.player_jumped.emit(self)
 		
 	# Get the input direction and handle the movement/deceleration.
 	velocity.x *= current_speed_multiplier
@@ -142,6 +147,14 @@ func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "attack":
 		is_attacking = false
 		
+func jump():
+	# Handle jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		if spores:
+			Events.spore_jump.emit(self)
+		else:
+			Events.player_jumped.emit(self)
 func apply_spore_buff(duration: float, gravity_scale: float):
 	spores = true
 	Events.spores_collected.emit(self)
@@ -164,3 +177,35 @@ func light_colour(type):
 		var target_color_two = Color(0.99, 0.48, 0.13, 0.68) if not spores else Color(0.248, 0.461, 1.0, 0.753)
 		tween.tween_property(light_outer, "color", target_color_one, dim_time)
 		tween.tween_property(light_inner, "color", target_color_two, dim_time)
+
+func drop_through_platform():
+	if dropping:
+		return
+	
+	dropping = true
+	set_collision_mask_value(12, false)
+	velocity.y = 50
+	await get_tree().create_timer(drop_through_time).timeout
+	set_collision_mask_value(12, true)
+	dropping = false
+	
+func is_on_one_way_platform() -> bool:
+	if not is_on_floor():
+		return false
+		
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is TileMapLayer:
+			var tilemap := collider as TileMapLayer
+			
+			var local_pos = tilemap.to_local(collision.get_position())
+			var coords = tilemap.local_to_map(local_pos)
+			
+			var tile_data = tilemap.get_cell_tile_data(coords)
+			
+			if tile_data and tile_data.get_custom_data("one_way"):
+				return true
+	
+	return false

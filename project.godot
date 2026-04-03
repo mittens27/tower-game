@@ -78,6 +78,7 @@ ui_use={
 2d_physics/layer_9="switches"
 2d_physics/layer_10="crates"
 2d_physics/layer_11="NPC"
+2d_physics/layer_12="Platforms"
 
 [physics]
 
