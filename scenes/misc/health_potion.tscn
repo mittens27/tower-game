@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bsv8blpyut8ta"]
+
+[ext_resource type="Texture2D" uid="uid://w5oma65flrjc" path="res://assets/sprites/Andy Assets/healing_potion.png" id="1_es1u6"]
+[ext_resource type="Script" uid="uid://bdyk6eeprkpke" path="res://scenes/misc/health_potion.gd" id="1_xp265"]
+[ext_resource type="Resource" uid="uid://bwu1njng3ild5" path="res://resources/HealingPotionData.tres" id="2_ajcxb"]
+[ext_resource type="Texture2D" uid="uid://6nalwe7f6cnv" path="res://assets/sprites/Andy Assets/healing_potion_for_nmap_n.png" id="2_xp265"]
+[ext_resource type="PackedScene" uid="uid://d0s16u2xd7unu" path="res://scenes/misc/collectible_shimmer.tscn" id="5_qnclg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ajcxb"]
+diffuse_texture = ExtResource("1_es1u6")
+normal_texture = ExtResource("2_xp265")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_es1u6"]
+radius = 5.100067
+height = 16.002712
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xp265"]
+radius = 5.2146873
+height = 15.888092
+
+[node name="HealthPotion" type="CharacterBody2D" unique_id=1517387319]
+collision_layer = 4096
+script = ExtResource("1_xp265")
+potion_data = ExtResource("2_ajcxb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=364439607]
+light_mask = 5
+texture = SubResource("CanvasTexture_ajcxb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1992024490]
+visible = false
+shape = SubResource("CapsuleShape2D_es1u6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1181675905]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2017348974]
+visible = false
+shape = SubResource("CapsuleShape2D_xp265")
+
+[node name="collectible_shimmer" parent="." unique_id=1925664681 instance=ExtResource("5_qnclg")]
+light_mask = 4
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

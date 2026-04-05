@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://ink7rtqqofbi" path="res://assets/backgrounds/Mountain Dusk/version A/Layers/far-mountains.png" id="32_yb600"]
 [ext_resource type="Texture2D" uid="uid://cchhp61lsj6sg" path="res://assets/backgrounds/Mountain Dusk/version A/Layers/mountains.png" id="33_sy51j"]
 [ext_resource type="Texture2D" uid="uid://4euncadilqfh" path="res://assets/backgrounds/Mountain Dusk/version A/Layers/trees.png" id="34_w31o2"]
+[ext_resource type="PackedScene" uid="uid://bsv8blpyut8ta" path="res://scenes/misc/health_potion.tscn" id="39_sy51j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_im81g"]
 atlas = ExtResource("2_ykry0")
@@ -599,6 +600,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
+
+[node name="HealthPotion" parent="." unique_id=130505115 instance=ExtResource("39_sy51j")]
+position = Vector2(197.71472, 768.7375)
 
 [connection signal="body_entered" from="World/RevealArea_SecretRoom1" to="World/Terrain" method="_on_reveal_area_secret_room_1_body_entered"]
 [connection signal="body_exited" from="World/RevealArea_SecretRoom1" to="World/Terrain" method="_on_reveal_area_secret_room_1_body_exited"]

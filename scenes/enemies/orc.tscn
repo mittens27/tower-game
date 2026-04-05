@@ -202,8 +202,9 @@ enemy_data = ExtResource("2_4svvi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1946403913]
 sprite_frames = SubResource("SpriteFrames_p8mg1")
-animation = &"idle_right"
+animation = &"attack_right"
 autoplay = "idle_right"
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1085147743]
 visible = false

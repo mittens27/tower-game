@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="2_yu2v2"]
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="3_80cyx"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="4_wjuu7"]
-[ext_resource type="Resource" uid="uid://cytq5palccj62" path="res://resources/EnemyTouchAttackData.tres" id="5_wjuu7"]
+[ext_resource type="Resource" uid="uid://db6ukjgv4gmvn" path="res://resources/GremlinAttackData.tres" id="5_2jnc4"]
 [ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="8_2jnc4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jnc4"]
@@ -86,7 +86,7 @@ visible = false
 [node name="Hitbox" parent="Attack" unique_id=1865862495 instance=ExtResource("2_yu2v2")]
 collision_layer = 32
 collision_mask = 16
-attack_data = ExtResource("5_wjuu7")
+attack_data = ExtResource("5_2jnc4")
 
 [node name="CollisionShape2D" parent="Attack/Hitbox" index="0" unique_id=1718400250]
 position = Vector2(0.03914261, 2.0391436)

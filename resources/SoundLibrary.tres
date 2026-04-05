@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dlmt4i5htopbo" path="res://assets/sounds/powerup3.wav" id="17_r3jnc"]
 [ext_resource type="AudioStream" uid="uid://c006o47k30m6k" path="res://assets/sounds/superJump.wav" id="18_qvoxx"]
 [ext_resource type="AudioStream" uid="uid://dra1cqgq0l22y" path="res://assets/sounds/blast.wav" id="19_8uugw"]
+[ext_resource type="AudioStream" uid="uid://xngdhss4v3ro" path="res://assets/sounds/blip5.wav" id="20_jxsue"]
 
 [sub_resource type="Resource" id="Resource_yk307"]
 script = ExtResource("2_7qbj0")
@@ -97,6 +98,11 @@ script = ExtResource("2_7qbj0")
 stream = ExtResource("15_kdqgc")
 volume_db = 8.0
 
+[sub_resource type="Resource" id="Resource_mric4"]
+script = ExtResource("2_7qbj0")
+stream = ExtResource("20_jxsue")
+metadata/_custom_type_script = "uid://db1id67f30r8f"
+
 [resource]
 script = ExtResource("1_bdbu4")
 sounds = Dictionary[String, ExtResource("2_7qbj0")]({
@@ -106,6 +112,7 @@ sounds = Dictionary[String, ExtResource("2_7qbj0")]({
 "die3": SubResource("Resource_vn0pm"),
 "doorOpen1": SubResource("Resource_jxsue"),
 "fall": SubResource("Resource_3ta5s"),
+"healing_potion": SubResource("Resource_mric4"),
 "hurt1": SubResource("Resource_dtemh"),
 "hurt2": SubResource("Resource_o6g8e"),
 "jump": SubResource("Resource_1vg66"),

@@ -143,7 +143,13 @@ func _on_died():
 
 func _on_hit_received(attack_data, source_position: Vector2):
 	health_component.damage(attack_data.damage)
+	apply_knockback(attack_data.knockback, source_position)
 	Events.player_hurt.emit(self)
+
+func apply_knockback(force, source_position: Vector2):
+	var knockback_dir = (global_position - source_position).normalized()
+	velocity = knockback_dir * force
+	velocity.y = force * -0.25
 
 func apply_attack(attack_data, source_position):
 	health_component.damage(attack_data.damage)
@@ -152,6 +158,13 @@ func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "attack":
 		is_attacking = false
 		
+func potion(potion_data):
+	Events.potion_collected.emit(self, potion_data)
+	if potion_data.type == "healing_potion":
+		health_component.heal(potion_data.healing)
+		effect_handler.activate(potion_data.effect)
+		await get_tree().create_timer(1).timeout
+		effect_handler.deactivate(potion_data.effect)
 func jump():
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

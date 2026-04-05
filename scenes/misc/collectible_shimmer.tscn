@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d0s16u2xd7unu"]
+
+[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="1_1momp"]
+[ext_resource type="Script" uid="uid://cd3jb38nowfp3" path="res://scenes/misc/collectible_shimmer.gd" id="1_x5ftr"]
+
+[node name="collectible_shimmer" type="Node2D" unique_id=1925664681]
+script = ExtResource("1_x5ftr")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1362497384]
+position = Vector2(0, 35)
+energy = 4.22
+range_item_cull_mask = 4
+texture = ExtResource("1_1momp")
+texture_scale = 0.2
+height = 2.0
+
+[node name="Timer" type="Timer" parent="." unique_id=733825317]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

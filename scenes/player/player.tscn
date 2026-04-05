@@ -289,6 +289,35 @@ scale_max = 3.0
 scale_curve = SubResource("CurveTexture_5gtgg")
 color_ramp = SubResource("GradientTexture1D_qek5x")
 
+[sub_resource type="Gradient" id="Gradient_je7p5"]
+colors = PackedColorArray(0.86343604, 5.318448e-06, 7.70092e-07, 1, 1, 0, 0, 0.4392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fm80t"]
+gradient = SubResource("Gradient_je7p5")
+
+[sub_resource type="Curve" id="Curve_gx1jg"]
+_data = [Vector2(0, 0.516854), 0.0, 0.0, 0, 0, Vector2(0.50495046, 1), 0.0, 0.0, 0, 0, Vector2(0.7772277, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ugbui"]
+curve = SubResource("Curve_gx1jg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fcs02"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 25.0
+initial_velocity_max = 35.0
+gravity = Vector3(0, -10, 0)
+damping_min = 10.0
+damping_max = 20.0
+damping_curve = SubResource("CurveTexture_ugbui")
+scale_min = 0.5
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_fm80t")
+
 [node name="player" type="CharacterBody2D" unique_id=1202608503 groups=["player"]]
 z_index = 2
 collision_layer = 2
@@ -364,6 +393,12 @@ explosiveness = 0.7
 randomness = 0.5
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ugbui")
+
+[node name="HealthParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1439652051]
+position = Vector2(-1.78685, 2.2335625)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_fcs02")
 
 [node name="PlayerLight" type="PointLight2D" parent="." unique_id=1590945527]
 position = Vector2(-0.29000854, -0.98498535)

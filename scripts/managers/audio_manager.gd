@@ -20,6 +20,7 @@ func _ready():
 	Events.spores_collected.connect(_on_spores_collected)
 	Events.spore_jump.connect(_on_spore_jump)
 	Events.log_door_opened.connect(_on_log_door_opened)
+	Events.potion_collected.connect(_on_potion_collected)
 	
 func play_music(stream: AudioStream):
 	music_player.stream = stream
@@ -104,3 +105,7 @@ func _on_spore_jump(player):
 func _on_log_door_opened(door):
 	print("log door sfx")
 	play_sfx("doorOpen1", door.global_position)
+	
+func _on_potion_collected(player, potion_data):
+	if potion_data.type == "healing_potion":
+		play_sfx(potion_data.collect_sound, player.global_position)

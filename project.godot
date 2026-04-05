@@ -68,6 +68,7 @@ ui_use={
 
 [layer_names]
 
+2d_render/layer_3="collectibles"
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
@@ -79,6 +80,7 @@ ui_use={
 2d_physics/layer_10="crates"
 2d_physics/layer_11="NPC"
 2d_physics/layer_12="Platforms"
+2d_physics/layer_13="collectibles"
 
 [physics]
 

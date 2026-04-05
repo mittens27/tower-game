@@ -4,7 +4,8 @@ extends Node2D
 	"spores": $SporeParticles,
 	"fire": $FireParticles,
 	"poison": $PoisonParticles,
-	"blood": $BloodParticles
+	"blood": $BloodParticles,
+	"heal": $HealthParticles
 }
 
 var active_counts := {}
