@@ -17,6 +17,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("player"):
+		await get_tree().create_timer(5).timeout
 		move_to(start_pos)
 
 func move_to(pos: Vector2):

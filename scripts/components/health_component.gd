@@ -22,3 +22,5 @@ func heal(amount: int):
 func initialize(max_hp: int, current_hp: int):
 	max_health = max_hp
 	current_health = current_hp
+	
+	health_changed.emit(current_health)

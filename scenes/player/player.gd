@@ -31,11 +31,11 @@ var dropping := false
 const ONE_WAY_LAYER := 12
 
 func _ready():
-	apply_player_data()
-	
 	health_component.died.connect(_on_died)
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	hurtbox.hit_received.connect(_on_hit_received)
+
+	apply_player_data()
 
 	attack.monitorable = false
 	attack.monitoring = false
@@ -76,7 +76,12 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
-		if collider.is_in_group("pushable"):
+		if collider == null:
+			continue
+		if not is_instance_valid(collider):
+			continue
+		
+		if is_instance_valid(collider) and collider.is_in_group("pushable"):
 			collider.apply_push(velocity.x)
 			
 	move_and_slide()

@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_3wvgv")
+damage = 1
 knockback = 0.0
 hitstun = 0.0
 effects = Array[String](["poison"])
