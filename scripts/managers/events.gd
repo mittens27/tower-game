@@ -4,6 +4,7 @@ extends Node
 signal entity_died(entity)
 signal attack_landed(attacker, target, attack_data)
 signal damage_taken(target, attack_data)
+signal reveal_requested(reveal_ids: String)
 
 #player
 signal player_jumped(player)

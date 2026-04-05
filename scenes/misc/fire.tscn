@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bfrbrvymuu1ix"]
 
 [ext_resource type="Texture2D" uid="uid://djbyu6222145d" path="res://assets/sprites/fire.png" id="1_bhx1w"]
-[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://point_light_2d.gd" id="2_1ok1q"]
+[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="2_1ok1q"]
 [ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="2_4q7o2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q7o2"]

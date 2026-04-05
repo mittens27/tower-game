@@ -15,16 +15,16 @@
 [ext_resource type="Script" uid="uid://drely2kjqaxum" path="res://scenes/levels/poison_water.gd" id="9_masl8"]
 [ext_resource type="PackedScene" uid="uid://0q40ryd0p17u" path="res://assets/sprites/lantern_b.tscn" id="9_x2df8"]
 [ext_resource type="PackedScene" uid="uid://bvkngb0xmd48t" path="res://scenes/enemies/orc.tscn" id="9_x5gqu"]
-[ext_resource type="Script" uid="uid://dd8cwgn5co4q3" path="res://scenes/levels/disappearing_fg_2.gd" id="10_qgoyv"]
+[ext_resource type="Script" uid="uid://dd8cwgn5co4q3" path="res://scripts/rooms/orc_basement.gd" id="10_qgoyv"]
 [ext_resource type="PackedScene" uid="uid://bq4vdw01b4vw7" path="res://scenes/enemies/gremlin.tscn" id="10_rssyh"]
 [ext_resource type="TileSet" uid="uid://ra0cfi3t7vo0" path="res://assets/tiles/AndyTiles/AndyTiles.tres" id="10_x2df8"]
-[ext_resource type="Script" uid="uid://b5t8oywdrew8m" path="res://scenes/levels/room_1_area.gd" id="11_2xkjh"]
+[ext_resource type="Script" uid="uid://b5t8oywdrew8m" path="res://scripts/rooms/room_1_area.gd" id="11_2xkjh"]
 [ext_resource type="PackedScene" uid="uid://bibob7kqrdmvr" path="res://scenes/enemies/cat.tscn" id="11_hwp66"]
-[ext_resource type="Script" uid="uid://y6dvukoejlmy" path="res://scenes/levels/disappearing_fg.gd" id="12_dj21o"]
-[ext_resource type="Script" uid="uid://bmcj80uimxf77" path="res://scenes/levels/world.gd" id="12_yb600"]
-[ext_resource type="PackedScene" uid="uid://dm1f56fedieo2" path="res://scenes/levels/World Items/dungeon_door.tscn" id="17_7exfm"]
-[ext_resource type="Script" uid="uid://bedha4q2fh3vr" path="res://scenes/levels/disappearing_fg_3.gd" id="17_kc8j3"]
-[ext_resource type="Shader" uid="uid://cchl4ih175ybi" path="res://scenes/levels/SecretRoom1.gdshader" id="17_sy51j"]
+[ext_resource type="Script" uid="uid://y6dvukoejlmy" path="res://scripts/rooms/spore_cave.gd" id="12_dj21o"]
+[ext_resource type="Script" uid="uid://dccpay7frmj3l" path="res://scripts/rooms/terrain.gd" id="13_sy51j"]
+[ext_resource type="PackedScene" uid="uid://dm1f56fedieo2" path="res://scripts/rooms/dungeon_door.tscn" id="17_7exfm"]
+[ext_resource type="Script" uid="uid://bedha4q2fh3vr" path="res://scripts/rooms/above_ground.gd" id="17_kc8j3"]
+[ext_resource type="Shader" uid="uid://cchl4ih175ybi" path="res://scripts/rooms/SecretRoom1.gdshader" id="17_sy51j"]
 [ext_resource type="TileSet" uid="uid://omyobndquv3f" path="res://assets/tiles/TileSet.tres" id="17_ygu70"]
 [ext_resource type="PackedScene" uid="uid://c6gorgpaeiql1" path="res://scenes/misc/crate.tscn" id="18_8qayg"]
 [ext_resource type="PackedScene" uid="uid://cdfh6s2fwetix" path="res://scenes/levels/World Items/jump_flower.tscn" id="19_px1c8"]
@@ -275,10 +275,8 @@ texture = ExtResource("32_gvp5n")
 texture_scale = 0.25
 height = 1.0
 
-[node name="World" type="Node2D" parent="." unique_id=936720626 node_paths=PackedStringArray("player")]
+[node name="World" type="Node2D" parent="." unique_id=936720626]
 position = Vector2(307.29, 1095.985)
-script = ExtResource("12_yb600")
-player = NodePath("../player")
 
 [node name="RevealArea_SecretRoom1" type="Area2D" parent="World" unique_id=1210342490]
 collision_layer = 256
@@ -288,10 +286,17 @@ collision_mask = 2
 position = Vector2(-86.96005, -330.73828)
 shape = SubResource("RectangleShape2D_yb600")
 
-[node name="Terrain" type="TileMapLayer" parent="World" unique_id=968111603]
+[node name="Terrain" type="TileMapLayer" parent="World" unique_id=968111603 node_paths=PackedStringArray("player", "foreground_layers")]
 z_index = -1
+script = ExtResource("13_sy51j")
+player = NodePath("../../player")
+foreground_layers = {
+"above_ground": NodePath("AboveGround"),
+"orc_basement": NodePath("OrcBasement"),
+"spore_cave": NodePath("SporeCave")
+}
 
-[node name="DisappearingFG" type="TileMapLayer" parent="World/Terrain" unique_id=1734590436]
+[node name="SporeCave" type="TileMapLayer" parent="World/Terrain" unique_id=1734590436]
 visible = false
 light_mask = 0
 z_index = 10
@@ -299,7 +304,7 @@ tile_map_data = PackedByteArray("AAAkAPb/AQATAAMAAAAkAPf/AQAZAAMAAAAkAPj/AQAZAAQ
 tile_set = ExtResource("10_x2df8")
 script = ExtResource("12_dj21o")
 
-[node name="Disappearing FG2" type="TileMapLayer" parent="World/Terrain" unique_id=1605999841]
+[node name="OrcBasement" type="TileMapLayer" parent="World/Terrain" unique_id=1605999841]
 visible = false
 light_mask = 0
 z_index = 10
@@ -307,7 +312,7 @@ tile_map_data = PackedByteArray("AAAkAPH/AQAaAAYAAAAkAPD/AQAaAAUAAAAkAO//AQAaAAQ
 tile_set = ExtResource("10_x2df8")
 script = ExtResource("10_qgoyv")
 
-[node name="Disappearing FG4" type="TileMapLayer" parent="World/Terrain" unique_id=938137941]
+[node name="AboveGround" type="TileMapLayer" parent="World/Terrain" unique_id=938137941]
 visible = false
 light_mask = 0
 z_index = 10
@@ -315,7 +320,7 @@ tile_map_data = PackedByteArray("AADS/6T/AAAKAAAAAADS/6X/AAAKAAAAAADS/6b/AAAKAAA
 tile_set = ExtResource("10_x2df8")
 script = ExtResource("17_kc8j3")
 
-[node name="DisappearingFG3" type="TileMapLayer" parent="World/Terrain" unique_id=1726194748]
+[node name="SecretRoom1" type="TileMapLayer" parent="World/Terrain" unique_id=1726194748]
 light_mask = 0
 z_index = 10
 material = SubResource("ShaderMaterial_w31o2")
@@ -418,10 +423,9 @@ position = Vector2(615.19574, -135.94727)
 [node name="JumpFlower2" parent="World/Interactables" unique_id=183369431 instance=ExtResource("19_px1c8")]
 position = Vector2(-32.29001, -455.98502)
 
-[node name="DungeonDoor" parent="World/Interactables" unique_id=695599685 node_paths=PackedStringArray("hidden_area") instance=ExtResource("17_7exfm")]
+[node name="DungeonDoor" parent="World/Interactables" unique_id=695599685 instance=ExtResource("17_7exfm")]
 z_index = 11
 position = Vector2(585.08704, -288.985)
-hidden_area = NodePath("../../Terrain/Disappearing FG2")
 
 [node name="WaterZone" parent="World/Interactables" unique_id=1226998993 instance=ExtResource("20_xgklb")]
 
@@ -464,6 +468,12 @@ position = Vector2(180.70999, 8.015074)
 position = Vector2(248, 16)
 switch_node = NodePath("../switch")
 
+[node name="Room_1_Area" type="Node2D" parent="World/Interactables" unique_id=881550570 node_paths=PackedStringArray("audio_source", "enemies")]
+z_index = 2
+script = ExtResource("11_2xkjh")
+audio_source = NodePath("../AudioSource")
+enemies = [NodePath("../../Enemies/Gremlin"), NodePath("../../Enemies/Gremlin2")]
+
 [node name="Props" type="Node2D" parent="World" unique_id=187019024]
 
 [node name="Crate" parent="World/Props" unique_id=1891971127 instance=ExtResource("18_8qayg")]
@@ -473,13 +483,6 @@ position = Vector2(180.70999, 8.015015)
 [node name="Crate2" parent="World/Props" unique_id=1953263981 instance=ExtResource("18_8qayg")]
 z_index = 2
 position = Vector2(140.70999, -279.985)
-
-[node name="Room_1_Area" type="Node2D" parent="World" unique_id=881550570 node_paths=PackedStringArray("audio_source", "door", "enemies")]
-z_index = 2
-script = ExtResource("11_2xkjh")
-audio_source = NodePath("../Interactables/AudioSource")
-door = NodePath("../Terrain/DisappearingFG")
-enemies = [NodePath("../Enemies/Gremlin"), NodePath("../Enemies/Gremlin2")]
 
 [node name="NPCs" type="Node2D" parent="World" unique_id=354048823]
 
@@ -597,7 +600,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[connection signal="body_entered" from="World/RevealArea_SecretRoom1" to="World" method="_on_reveal_area_secret_room_1_body_entered"]
-[connection signal="body_exited" from="World/RevealArea_SecretRoom1" to="World" method="_on_reveal_area_secret_room_1_body_exited"]
+[connection signal="body_entered" from="World/RevealArea_SecretRoom1" to="World/Terrain" method="_on_reveal_area_secret_room_1_body_entered"]
+[connection signal="body_exited" from="World/RevealArea_SecretRoom1" to="World/Terrain" method="_on_reveal_area_secret_room_1_body_exited"]
 
 [editable path="World/Interactables/WaterZone"]

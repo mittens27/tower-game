@@ -1,7 +1,6 @@
 extends Node2D
 
 @export var audio_source: Node2D
-@export var door: TileMapLayer
 @export var enemies: Array[CharacterBody2D] = []
 
 func _ready():
@@ -17,7 +16,7 @@ func on_enemy_died(enemy):
 
 func unlock_door():
 	print("All enemies killed. Door unlocked.")
-	door.open()
+	Events.reveal_requested.emit(RevealIDs.SPORECAVE)
 	if audio_source:
 		Events.log_door_opened.emit(audio_source)
 	else:

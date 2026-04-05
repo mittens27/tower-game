@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvkngb0xmd48t"]
 
-[ext_resource type="Script" uid="uid://cnhx762u6602b" path="res://orc.gd" id="1_hbdu5"]
+[ext_resource type="Script" uid="uid://cnhx762u6602b" path="res://scenes/enemies/scripts/orc.gd" id="1_hbdu5"]
 [ext_resource type="Texture2D" uid="uid://dtasny4yxngop" path="res://assets/sprites/orc.png" id="2_1jjpi"]
 [ext_resource type="Resource" uid="uid://desmm7otx5fgq" path="res://resources/OrcData.tres" id="2_4svvi"]
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="3_4svvi"]

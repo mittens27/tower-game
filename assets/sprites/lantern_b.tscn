@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://nlxrfjax6ak3" path="res://assets/sprites/lantern.png" id="1_3c4ho"]
 [ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="2_7a55u"]
-[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://point_light_2d.gd" id="3_renb1"]
+[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="3_renb1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sh7bc"]
 atlas = ExtResource("1_3c4ho")
