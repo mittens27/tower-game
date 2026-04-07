@@ -1,13 +1,14 @@
 extends Sprite2D
 
-@export var max_height: float = 160.0
-@export var top_y: float # Where the chain is fully hidden.
+@export var max_height: float
 @export var elevator: StaticBody2D
 
 @onready var elevator_local_start_y = to_local(elevator.global_position).y
 
+var rect := region_rect
+
 func _ready():
-	var rect := region_rect
+	#var rect := region_rect
 	rect.size.y = max_height
 	region_rect = rect
 		
@@ -18,7 +19,7 @@ func _process(_delta):
 	
 	var visible_height = clamp(max_height + moved_distance, 0.0, max_height)
 	
-	var rect := region_rect
-	rect.position.y = max_height - visible_height
+	#var rect := region_rect
+	#rect.position.y = max_height - visible_height
 	rect.size.y = visible_height
 	region_rect = rect

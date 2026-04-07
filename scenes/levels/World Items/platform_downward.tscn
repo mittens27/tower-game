@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://duh335brfcb5j"]
+[gd_scene format=3 uid="uid://lsk12w7hgde8"]
 
-[ext_resource type="Script" uid="uid://c474y84ie38ch" path="res://scenes/levels/World Items/platform.gd" id="1_v1yiy"]
-[ext_resource type="Texture2D" uid="uid://dwrcckl2teovt" path="res://assets/tiles/AndyTiles/AndyTiles_v4.png" id="2_v1yiy"]
-[ext_resource type="Texture2D" uid="uid://b2qe7gk6y221c" path="res://assets/tiles/AndyTiles/AndyTiles_v4_n.png" id="3_mvcag"]
+[ext_resource type="Script" uid="uid://bh4gxpeyfhh6p" path="res://scenes/levels/World Items/platform_downward.gd" id="1_ic707"]
+[ext_resource type="Texture2D" uid="uid://dwrcckl2teovt" path="res://assets/tiles/AndyTiles/AndyTiles_v4.png" id="2_su450"]
+[ext_resource type="Texture2D" uid="uid://b2qe7gk6y221c" path="res://assets/tiles/AndyTiles/AndyTiles_v4_n.png" id="3_4dt63"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_gcbxe"]
-diffuse_texture = ExtResource("2_v1yiy")
-normal_texture = ExtResource("3_mvcag")
+diffuse_texture = ExtResource("2_su450")
+normal_texture = ExtResource("3_4dt63")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bdwb"]
 size = Vector2(48, 13)
@@ -14,9 +14,9 @@ size = Vector2(48, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qa2u0"]
 size = Vector2(48, 3)
 
-[node name="platform" type="StaticBody2D" unique_id=1876451469]
+[node name="platform_downward" type="StaticBody2D" unique_id=1876451469]
 collision_mask = 6
-script = ExtResource("1_v1yiy")
+script = ExtResource("1_ic707")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=84021175]
 texture = SubResource("CanvasTexture_gcbxe")

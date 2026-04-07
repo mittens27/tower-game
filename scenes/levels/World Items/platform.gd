@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var top_offset: float = -64.0
-@export var move_time: float = 0.5
+@export var top_offset: float
+@export var move_time: float = 2.0
 
 var start_pos: Vector2
 var target_pos: Vector2

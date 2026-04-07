@@ -42,6 +42,8 @@ func _ready():
 	attack.monitoring = false
 	
 func _physics_process(delta):
+	print("hitbox monitorable:", attack.monitorable)
+	print("hitbox monitoring:", attack.monitoring)
 	#one way platforms
 	var input_down := Input.is_action_pressed("ui_down")
 	var jump_pressed := Input.is_action_just_pressed("ui_accept")

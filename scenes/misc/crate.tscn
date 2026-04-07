@@ -23,5 +23,6 @@ position = Vector2(0, -8)
 texture = SubResource("CanvasTexture_o3hya")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1525899204]
+visible = false
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_jydau")

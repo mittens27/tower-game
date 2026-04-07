@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://boygy7u84mdn0" path="res://scripts/utilities/switch.gd" id="1_e8n4d"]
 [ext_resource type="Texture2D" uid="uid://bg5w2ekvow5kb" path="res://assets/sprites/Andy Assets/lever.png" id="2_f2428"]
+[ext_resource type="Texture2D" uid="uid://6a7yjd366ejx" path="res://assets/sprites/Andy Assets/lever1.png" id="3_a1jej"]
+[ext_resource type="Texture2D" uid="uid://c8jnxfqv0tpqc" path="res://assets/sprites/Andy Assets/lever1_n.png" id="4_l2lko"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nof2g"]
 atlas = ExtResource("2_f2428")
@@ -47,15 +49,71 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fus7o"]
 size = Vector2(58, 76)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_a1jej"]
+diffuse_texture = ExtResource("3_a1jej")
+normal_texture = ExtResource("4_l2lko")
+
+[sub_resource type="Animation" id="Animation_qsexl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nkrnp"]
+resource_name = "off"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_miu38"]
+resource_name = "on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8adep"]
+_data = {
+&"RESET": SubResource("Animation_qsexl"),
+&"off": SubResource("Animation_nkrnp"),
+&"on": SubResource("Animation_miu38")
+}
+
 [node name="switch" type="Node2D" unique_id=1175417536]
 script = ExtResource("1_e8n4d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1661139336]
+visible = false
 sprite_frames = SubResource("SpriteFrames_nkrnp")
-animation = &"on"
+animation = &"off"
 autoplay = "off"
-frame = 2
-frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=806882372]
 collision_layer = 256
@@ -65,6 +123,16 @@ collision_mask = 2
 visible = false
 position = Vector2(-29, 1)
 shape = SubResource("RectangleShape2D_fus7o")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1157923014]
+texture = SubResource("CanvasTexture_a1jej")
+hframes = 3
+vframes = 2
+region_rect = Rect2(0, 0, 50, 33)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1577794743]
+libraries/ = SubResource("AnimationLibrary_8adep")
+autoplay = &"off"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
