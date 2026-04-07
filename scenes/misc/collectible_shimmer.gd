@@ -5,7 +5,6 @@ extends Node2D
 
 func _on_timer_timeout():
 	shimmer()
-	print("Light timer hit.")
 
 func shimmer():
 	var move_time = 0.5

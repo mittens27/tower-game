@@ -9,7 +9,8 @@ var state: EnemyState = EnemyState.WALK
 @onready var attack := $Attack/Hitbox
 @onready var health_component := $HealthComponent
 @onready var hurtbox := $Hurtbox
-@onready var sprite := $AnimatedSprite2D
+@onready var sprite := $Sprite2D
+@onready var anim := $AnimationPlayer
 @onready var eyes := $eyes
 
 signal enemy_died()
@@ -53,9 +54,9 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		EnemyState.IDLE:
-			sprite.play("idle")
+			anim.play("idle")
 		EnemyState.WALK:
-			sprite.play("walk")
+			anim.play("run")
 			velocity.x = facing_direction * speed
 		EnemyState.DIE:
 			velocity.x = 0

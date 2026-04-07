@@ -490,6 +490,11 @@ position = Vector2(140.70999, -279.985)
 [node name="Cat" parent="World/NPCs" unique_id=470188049 instance=ExtResource("11_hwp66")]
 position = Vector2(87, 8)
 
+[node name="Collectibles" type="Node2D" parent="World" unique_id=280768462]
+
+[node name="HealthPotion" parent="World/Collectibles" unique_id=130505115 instance=ExtResource("39_sy51j")]
+position = Vector2(-109.57529, -327.2475)
+
 [node name="BG" type="Node2D" parent="." unique_id=746811785]
 z_index = -9
 metadata/_edit_lock_ = true
@@ -600,9 +605,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
-
-[node name="HealthPotion" parent="." unique_id=130505115 instance=ExtResource("39_sy51j")]
-position = Vector2(197.71472, 768.7375)
 
 [connection signal="body_entered" from="World/RevealArea_SecretRoom1" to="World/Terrain" method="_on_reveal_area_secret_room_1_body_entered"]
 [connection signal="body_exited" from="World/RevealArea_SecretRoom1" to="World/Terrain" method="_on_reveal_area_secret_room_1_body_exited"]

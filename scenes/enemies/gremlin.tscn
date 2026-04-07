@@ -5,9 +5,70 @@
 [ext_resource type="Resource" uid="uid://dvxi54kr6gaaa" path="res://resources/GremlinData.tres" id="2_80cyx"]
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="2_yu2v2"]
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="3_80cyx"]
+[ext_resource type="Texture2D" uid="uid://bta2akcrqlrro" path="res://assets/sprites/enemyGremlin_n.png" id="4_mxaoc"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="4_wjuu7"]
 [ext_resource type="Resource" uid="uid://db6ukjgv4gmvn" path="res://resources/GremlinAttackData.tres" id="5_2jnc4"]
 [ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="8_2jnc4"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kdcby"]
+diffuse_texture = ExtResource("1_8f2tl")
+normal_texture = ExtResource("4_mxaoc")
+
+[sub_resource type="Animation" id="Animation_g4lbe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_h1nml"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_ixhcb"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.175, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oq683"]
+_data = {
+&"RESET": SubResource("Animation_g4lbe"),
+&"idle": SubResource("Animation_h1nml"),
+&"run": SubResource("Animation_ixhcb")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jnc4"]
 atlas = ExtResource("1_8f2tl")
@@ -66,7 +127,19 @@ collision_mask = 7
 script = ExtResource("1_yu2v2")
 enemy_data = ExtResource("2_80cyx")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1848198328]
+light_mask = 3
+scale = Vector2(1.5, 1.5)
+texture = SubResource("CanvasTexture_kdcby")
+hframes = 14
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=812973038]
+libraries/ = SubResource("AnimationLibrary_oq683")
+autoplay = &"idle"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=60255234]
+visible = false
 light_mask = 2
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_h1nml")
@@ -113,7 +186,7 @@ range_item_cull_mask = 2
 texture = ExtResource("8_2jnc4")
 offset = Vector2(3.835, -2.25)
 texture_scale = 0.02
-height = 1.0
+height = 4.0
 
 [editable path="Attack/Hitbox"]
 [editable path="HealthComponent"]

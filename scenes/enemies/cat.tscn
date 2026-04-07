@@ -8,6 +8,184 @@
 [ext_resource type="Resource" uid="uid://bplxo0rebq38f" path="res://resources/CattackCata.tres" id="3_qscrr"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="4_26kwq"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_dl6p7"]
+diffuse_texture = ExtResource("1_mt3cs")
+
+[sub_resource type="Animation" id="Animation_2il8m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rbw5e"]
+resource_name = "attack_left"
+length = 2.1666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1, 1.2, 1.4000001, 1.6000001, 1.8000001, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 40, 41, 40, 41, 40, 41, 40, 41, 42]
+}
+
+[sub_resource type="Animation" id="Animation_vo5or"]
+resource_name = "attack_right"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1, 1.2, 1.4000001, 1.6000001, 1.8000001, 2, 2.2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 38, 37, 38, 37, 38, 37, 38, 37, 38, 37, 38, 39]
+}
+
+[sub_resource type="Animation" id="Animation_wxdvs"]
+resource_name = "idle_left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [13, 15]
+}
+
+[sub_resource type="Animation" id="Animation_dl6p7"]
+resource_name = "idle_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [21, 19]
+}
+
+[sub_resource type="Animation" id="Animation_uyixg"]
+resource_name = "lay"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35, 36]
+}
+
+[sub_resource type="Animation" id="Animation_w4d08"]
+resource_name = "turn_left"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_rfoxs"]
+resource_name = "turn_right"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_lak24"]
+resource_name = "walk_left"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_08keo"]
+resource_name = "walk_right"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lak24"]
+_data = {
+&"RESET": SubResource("Animation_2il8m"),
+&"attack_left": SubResource("Animation_rbw5e"),
+&"attack_right": SubResource("Animation_vo5or"),
+&"idle_left": SubResource("Animation_wxdvs"),
+&"idle_right": SubResource("Animation_dl6p7"),
+&"lay": SubResource("Animation_uyixg"),
+&"turn_left": SubResource("Animation_w4d08"),
+&"turn_right": SubResource("Animation_rfoxs"),
+&"walk_left": SubResource("Animation_lak24"),
+&"walk_right": SubResource("Animation_08keo")
+}
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cjrgq"]
 atlas = ExtResource("1_mt3cs")
 region = Rect2(1680, 0, 42, 40)
@@ -400,9 +578,18 @@ collision_layer = 1024
 script = ExtResource("1_26kwq")
 enemy_data = ExtResource("2_d1u2y")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1872437914]
+texture = SubResource("CanvasTexture_dl6p7")
+hframes = 43
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=292791092]
+libraries/ = SubResource("AnimationLibrary_lak24")
+autoplay = &"idle_left"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=982783168]
+visible = false
 sprite_frames = SubResource("SpriteFrames_81133")
-animation = &"walk_right"
+animation = &"attack_left"
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=412368465]
 position = Vector2(2.4408875, 3.3562174)
@@ -435,6 +622,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7cv73")
 debug_color = Color(0.673123, 0.3071809, 1, 0.41960785)
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 
 [editable path="Attack/Hitbox"]

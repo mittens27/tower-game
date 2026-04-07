@@ -9,7 +9,8 @@ var state: EnemyState = EnemyState.WALK_RIGHT
 @onready var attack := $Attack/Hitbox
 @onready var health_component := $HealthComponent
 @onready var hurtbox := $Hurtbox
-@onready var sprite := $AnimatedSprite2D
+@onready var sprite := $Sprite2D
+@onready var anim := $AnimationPlayer
 
 var gravity: float
 var speed: float
@@ -32,10 +33,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
-	#if velocity.x != 0:
-		#sprite.flip_h = velocity.x < 0
-		#ground_check.scale.x = -1 if sprite.flip_h else 1
-		
 	turn_timer -= delta
 	if turn_timer <= 0:
 		if is_on_wall():
@@ -53,20 +50,20 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		EnemyState.IDLE_LEFT:
-			sprite.play("idle_left")
+			anim.play("idle_left")
 		EnemyState.IDLE_RIGHT:
-			sprite.play("idle_right")
+			anim.play("idle_right")
 		EnemyState.WALK_LEFT:
-			sprite.play("walk_left")
+			anim.play("walk_left")
 			velocity.x = direction * speed
 		EnemyState.WALK_RIGHT:
-			sprite.play("walk_right")
+			anim.play("walk_right")
 			velocity.x = direction * speed
 		EnemyState.TURN_LEFT:
-			sprite.play("turn_left")
+			anim.play("turn_left")
 			velocity.x = 0
 		EnemyState.TURN_RIGHT:
-			sprite.play("turn_right")
+			anim.play("turn_right")
 			velocity.x = 0
 		EnemyState.DIE:
 			velocity.x = 0
@@ -96,10 +93,10 @@ func turn():
 	ground_check.scale.x = 1 if (direction == 1) else -1
 	turn_timer = turn_cooldown
 
-func _on_animated_sprite_2d_animation_finished():
-	if sprite.animation == "turn_left":
+func _on_animation_player_animation_finished(anim_name: StringName):
+	if anim_name == "turn_left":
 		state = EnemyState.WALK_LEFT
 		turn()
-	if sprite.animation == "turn_right":
+	if anim_name == "turn_right":
 		state = EnemyState.WALK_RIGHT
 		turn()

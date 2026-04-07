@@ -3,7 +3,8 @@ extends CharacterBody2D
 enum PlayerState { IDLE, RUN, ATTACK, JUMP, FALL, DIE }
 var state : PlayerState = PlayerState.IDLE
 
-@onready var sprite := $AnimatedSprite2D
+@onready var sprite := $Sprite2D
+@onready var anim := $AnimationPlayer
 @onready var health_component := $HealthComponent
 @onready var hurtbox := $Hurtbox
 @onready var attack := $Attack/Hitbox
@@ -99,25 +100,20 @@ func _physics_process(delta):
 		is_attacking = true
 	if is_attacking:
 		state = PlayerState.ATTACK
-	elif not is_attacking:
-		attack.monitorable = false
-		attack.monitoring = false
 		
 	match state:
 		PlayerState.IDLE:
-			sprite.play("idle")
+			anim.play("idle")
 		PlayerState.RUN:
-			sprite.play("run")
+			anim.play("walk")
 		PlayerState.JUMP:
-			sprite.play("jump")
+			anim.play("jump")
 		PlayerState.FALL:
-			sprite.play("fall")
+			anim.play("fall")
 		PlayerState.ATTACK:
-			sprite.play("attack")
-			attack.monitorable = true
-			attack.monitoring = true
+			anim.play("attack")
 		PlayerState.DIE:
-			sprite.play("die")
+			anim.play("die")
 			
 func apply_player_data():
 	if GMan.player_health <= 0:
@@ -153,10 +149,6 @@ func apply_knockback(force, source_position: Vector2):
 
 func apply_attack(attack_data, source_position):
 	health_component.damage(attack_data.damage)
-
-func _on_animated_sprite_2d_animation_finished():
-	if sprite.animation == "attack":
-		is_attacking = false
 		
 func potion(potion_data):
 	Events.potion_collected.emit(self, potion_data)
@@ -173,6 +165,7 @@ func jump():
 			Events.spore_jump.emit(self)
 		else:
 			Events.player_jumped.emit(self)
+
 func apply_spore_buff(duration: float, gravity_scale: float):
 	spores = true
 	Events.spores_collected.emit(self)
@@ -227,3 +220,7 @@ func is_on_one_way_platform() -> bool:
 				return true
 	
 	return false
+
+func _on_animation_player_animation_finished(anim_name: StringName):
+	if anim_name == "attack":
+		is_attacking = false

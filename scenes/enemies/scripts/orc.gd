@@ -11,7 +11,8 @@ var state: EnemyState = EnemyState.WALK
 @onready var axe_attack_hitbox := $AxeAttack/Hitbox
 @onready var health_component := $HealthComponent
 @onready var hurtbox := $Hurtbox
-@onready var sprite := $AnimatedSprite2D
+@onready var sprite := $Sprite2D
+@onready var anim := $AnimationPlayer
 
 signal enemy_died()
 
@@ -56,42 +57,38 @@ func _physics_process(delta):
 			patrol(delta)
 		
 	ground_check.scale.x = 1 if (facing_direction == 1) else -1
-	axe_attack.scale.x = 1 if (facing_direction == 1) else -1
 
 	move_and_slide()
 
 	match state:
 		EnemyState.IDLE_LEFT:
-			sprite.play("idle_left")
+			anim.play("idle_left")
 		EnemyState.IDLE_RIGHT:
-			sprite.play("idle_right")
+			anim.play("idle_right")
 		EnemyState.WALK:
 			if not is_attacking:
 				if player_in_range:
-					sprite.set_speed_scale(2)
+					anim.set_speed_scale(2)
 					velocity.x = facing_direction * speed * 1.5
 				else:
-					sprite.set_speed_scale(1)
+					anim.set_speed_scale(1)
 					velocity.x = facing_direction * speed
 				if facing_direction == -1:
-					sprite.play("walk_left")
+					anim.play("walk_left")
 				elif facing_direction == 1:
-					sprite.play("walk_right")
+					anim.play("walk_right")
 		EnemyState.ATTACK:
 			velocity.x = 0
-			sprite.set_speed_scale(1)
+			anim.set_speed_scale(1)
 			if facing_direction == -1:
-				sprite.play("attack_left")
+				anim.play("attack_left")
 			elif facing_direction == 1:
-				sprite.play("attack_right")
+				anim.play("attack_right")
 		EnemyState.DIE:
 			velocity.x = 0
 			remove_from_group("enemies")
 	if is_attacking:
 		state = EnemyState.ATTACK
-	elif not is_attacking:
-		axe_attack_hitbox.monitorable = false
-		axe_attack_hitbox.monitoring = false
 			
 func apply_enemy_data():
 	health_component.initialize(enemy_data.max_health, enemy_data.max_health)
@@ -170,18 +167,7 @@ func try_attack():
 	if can_attack:
 		can_attack = false
 		is_attacking = true
-		axe_attack_hitbox.monitoring = true
-		axe_attack_hitbox.monitorable = true
 		state = EnemyState.ATTACK
-
-func _on_animated_sprite_2d_animation_finished():
-	if sprite.animation == "attack_left" or sprite.animation == "attack_right":
-		axe_attack_hitbox.monitoring = false
-		axe_attack_hitbox.monitorable = false
-		is_attacking = false
-		
-		await get_tree().create_timer(1.5).timeout
-		can_attack = true
 		
 func patrol(delta):
 	turn_timer -= delta
@@ -191,3 +177,11 @@ func patrol(delta):
 		elif is_on_floor() and not ground_check.is_colliding():
 			turn()
 	state = EnemyState.WALK
+
+
+func _on_animation_player_animation_finished(anim_name: StringName):
+	if anim_name == "attack_left" or anim_name == "attack_right":
+		is_attacking = false
+		
+		await get_tree().create_timer(1.5).timeout
+		can_attack = true

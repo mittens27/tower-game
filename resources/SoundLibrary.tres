@@ -50,6 +50,11 @@ metadata/_custom_type_script = "uid://db1id67f30r8f"
 script = ExtResource("2_7qbj0")
 stream = ExtResource("7_jxsue")
 
+[sub_resource type="Resource" id="Resource_mric4"]
+script = ExtResource("2_7qbj0")
+stream = ExtResource("20_jxsue")
+metadata/_custom_type_script = "uid://db1id67f30r8f"
+
 [sub_resource type="Resource" id="Resource_dtemh"]
 script = ExtResource("2_7qbj0")
 stream = ExtResource("8_mric4")
@@ -97,11 +102,6 @@ metadata/_custom_type_script = "uid://db1id67f30r8f"
 script = ExtResource("2_7qbj0")
 stream = ExtResource("15_kdqgc")
 volume_db = 8.0
-
-[sub_resource type="Resource" id="Resource_mric4"]
-script = ExtResource("2_7qbj0")
-stream = ExtResource("20_jxsue")
-metadata/_custom_type_script = "uid://db1id67f30r8f"
 
 [resource]
 script = ExtResource("1_bdbu4")
