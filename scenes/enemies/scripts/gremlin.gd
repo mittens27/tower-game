@@ -34,8 +34,7 @@ func _ready():
 	hurtbox.hit_received.connect(_on_hit_received)
 	health_component.died.connect(_on_died)
 
-func _physics_process(delta: float) -> void:
-
+func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		

@@ -42,8 +42,6 @@ func _ready():
 	attack.monitoring = false
 	
 func _physics_process(delta):
-	print("hitbox monitorable:", attack.monitorable)
-	print("hitbox monitoring:", attack.monitoring)
 	#one way platforms
 	var input_down := Input.is_action_pressed("ui_down")
 	var jump_pressed := Input.is_action_just_pressed("ui_accept")
@@ -90,32 +88,33 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	#State Machine
-	if velocity.x == 0 and is_on_floor():
-		state = PlayerState.IDLE
-	elif velocity.x != 0 and is_on_floor():
-		state = PlayerState.RUN
-	if velocity.y < 0 and not is_on_floor():
-		state = PlayerState.JUMP
-	elif velocity.y >= 0 and not is_on_floor():
-		state = PlayerState.FALL
-	if Input.is_action_just_pressed("attack"):
+	if not is_attacking:
+		if velocity.x == 0 and is_on_floor():
+			state = PlayerState.IDLE
+		elif velocity.x != 0 and is_on_floor():
+			state = PlayerState.RUN
+		elif velocity.y < 0:
+			state = PlayerState.JUMP
+		elif velocity.y >= 0:
+			state = PlayerState.FALL
+
+	if Input.is_action_just_pressed("attack") and not is_attacking:
 		is_attacking = true
-	if is_attacking:
 		state = PlayerState.ATTACK
 		
 	match state:
 		PlayerState.IDLE:
-			anim.play("idle")
+			play_anim("idle")
 		PlayerState.RUN:
-			anim.play("walk")
+			play_anim("walk")
 		PlayerState.JUMP:
-			anim.play("jump")
+			play_anim("jump")
 		PlayerState.FALL:
-			anim.play("fall")
+			play_anim("fall")
 		PlayerState.ATTACK:
-			anim.play("attack")
+			play_anim("attack")
 		PlayerState.DIE:
-			anim.play("die")
+			play_anim("die")
 			
 func apply_player_data():
 	if GMan.player_health <= 0:
@@ -226,3 +225,7 @@ func is_on_one_way_platform() -> bool:
 func _on_animation_player_animation_finished(anim_name: StringName):
 	if anim_name == "attack":
 		is_attacking = false
+
+func play_anim(name: String):
+	if anim.current_animation != name:
+		anim.play(name)

@@ -31,14 +31,13 @@ func _ready():
 	
 	spore_player.visible = false
 	spore_active = true
+	attack_hitbox.monitorable = false
 	
 func _process(delta):
 	if spore_active == true:
 		attack_hitbox.monitorable = true
-		attack_hitbox.monitoring = true
 	else:
 		attack_hitbox.monitorable = false
-		attack_hitbox.monitoring = false
 	
 func _on_plant_frame_changed():
 	if plant_player.animation == "spores" and plant_player.frame == 12:

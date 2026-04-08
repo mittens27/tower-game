@@ -21,7 +21,7 @@ func open_door():
 	sprite.play("open")
 	collision.set_deferred("collision_layer", 0)
 	collision.set_deferred("collision_mask", 0)
-	Events.reveal_requested.emit(RevealIDs.ORCEBASEMENT)
+	Events.reveal_requested.emit(RevealIDs.ORCBASEMENT)
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):

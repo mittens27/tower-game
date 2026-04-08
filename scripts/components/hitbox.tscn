@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dqptwfbyile50" path="res://scripts/components/hitbox.gd" id="1_lfvxk"]
 
 [node name="Hitbox" type="Area2D" unique_id=1865862495]
+monitoring = false
 script = ExtResource("1_lfvxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1718400250]

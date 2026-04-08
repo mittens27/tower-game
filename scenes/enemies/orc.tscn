@@ -67,22 +67,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AxeAttack/Hitbox:monitoring")
+tracks/4/path = NodePath("AxeAttack/Hitbox:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AxeAttack/Hitbox:monitorable")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -144,22 +132,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AxeAttack/Hitbox:monitoring")
+tracks/4/path = NodePath("AxeAttack/Hitbox:monitorable")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AxeAttack/Hitbox:monitorable")
-tracks/5/interp = 0
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.35),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -221,22 +197,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AxeAttack/Hitbox:monitoring")
+tracks/4/path = NodePath("AxeAttack/Hitbox:monitorable")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AxeAttack/Hitbox:monitorable")
-tracks/5/interp = 0
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.35),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -344,7 +308,6 @@ radius = 65.01932
 [node name="Orc" type="CharacterBody2D" unique_id=1547247382 groups=["enemies"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
-collision_mask = 3
 script = ExtResource("1_hbdu5")
 enemy_data = ExtResource("2_4svvi")
 
@@ -376,7 +339,6 @@ texture = SubResource("CanvasTexture_4svvi")
 [node name="Hitbox" parent="Attack" unique_id=1865862495 instance=ExtResource("3_4svvi")]
 collision_layer = 32
 collision_mask = 16
-monitoring = false
 monitorable = false
 attack_data = ExtResource("5_4svvi")
 

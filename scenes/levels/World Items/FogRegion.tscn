@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cr7p10tnsed2w"]
+
+[ext_resource type="Shader" uid="uid://copdejpgx5jtl" path="res://scenes/levels/fog.gdshader" id="1_wmww8"]
+[ext_resource type="Script" uid="uid://bqpgmsspqmtw5" path="res://scenes/levels/World Items/fog_region.gd" id="2_6tj0x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pr7vu"]
+shader = ExtResource("1_wmww8")
+shader_parameter/softness = 0.1
+
+[node name="FogRegion" type="ColorRect" unique_id=332486486]
+light_mask = 0
+material = SubResource("ShaderMaterial_pr7vu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.11764706, 0.11372549, 0.11372549, 1)
+script = ExtResource("2_6tj0x")
+metadata/_edit_use_anchors_ = true

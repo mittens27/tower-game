@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var reveal_string: String
+
 @onready var anim := $AnimationPlayer
 
 var switch_toggled := false
@@ -18,6 +20,8 @@ func _process(_delta):
 func activate_switch():
 	if switch_toggled:
 		return
+	if reveal_string:
+		Events.reveal_requested.emit(reveal_string)
 	Events.switch_toggled.emit(self)
 	switch_toggled = true
 	anim.play("on")
