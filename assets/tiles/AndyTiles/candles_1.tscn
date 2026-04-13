@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cnb8nhpmqpn8"]
+
+[ext_resource type="Texture2D" uid="uid://cws2yukm3leh8" path="res://assets/tiles/AndyTiles/candles_sheet.png" id="1_kmyl5"]
+[ext_resource type="Texture2D" uid="uid://bnigfhtu4luxb" path="res://assets/tiles/AndyTiles/candles_sheet_n.png" id="2_vrnmg"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="3_fa46j"]
+[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="4_sw6pr"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fa46j"]
+diffuse_texture = ExtResource("1_kmyl5")
+normal_texture = ExtResource("2_vrnmg")
+
+[sub_resource type="Animation" id="Animation_sw6pr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p0l5a"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 8, 12, 16, 20, 24]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eji65"]
+_data = {
+&"RESET": SubResource("Animation_sw6pr"),
+&"idle": SubResource("Animation_p0l5a")
+}
+
+[node name="candles1" type="Sprite2D" unique_id=466083257]
+light_mask = 2
+position = Vector2(0, 6)
+texture = SubResource("CanvasTexture_fa46j")
+hframes = 4
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=46340062]
+libraries/ = SubResource("AnimationLibrary_eji65")
+autoplay = &"idle"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1383682095]
+position = Vector2(0, -16.207512)
+color = Color(0.7, 0.30333334, 0, 0.8745098)
+energy = 4.0
+texture = ExtResource("3_fa46j")
+texture_scale = 0.75
+height = 4.0
+script = ExtResource("4_sw6pr")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=752145131]
+position = Vector2(0.534, -15.704143)
+color = Color(0.7019608, 0.3019608, 0, 0.4509804)
+energy = 2.0
+range_item_cull_mask = 2
+texture = ExtResource("3_fa46j")
+texture_scale = 0.25
+height = 4.0
+script = ExtResource("4_sw6pr")

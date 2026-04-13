@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://djbyu6222145d" path="res://assets/sprites/fire.png" id="1_bhx1w"]
 [ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="2_1ok1q"]
-[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="2_4q7o2"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="2_4q7o2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q7o2"]
 atlas = ExtResource("1_bhx1w")
@@ -77,7 +77,8 @@ frame_progress = 0.16201107
 position = Vector2(0, 3.995)
 color = Color(0.7, 0.30333334, 0, 0.8745098)
 energy = 8.0
+shadow_enabled = true
 texture = ExtResource("2_4q7o2")
-texture_scale = 0.4
+texture_scale = 1.55
 height = 4.0
 script = ExtResource("2_1ok1q")

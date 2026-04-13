@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dwrcckl2teovt" path="res://assets/tiles/AndyTiles/AndyTiles_v4.png" id="2_su450"]
 [ext_resource type="Texture2D" uid="uid://b2qe7gk6y221c" path="res://assets/tiles/AndyTiles/AndyTiles_v4_n.png" id="3_4dt63"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ic707"]
+cull_mode = 1
+polygon = PackedVector2Array(-24, -7, -24, 0, -22, 2, 22, 2, 24, 0, 24, -7)
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_gcbxe"]
 diffuse_texture = ExtResource("2_su450")
 normal_texture = ExtResource("3_4dt63")
@@ -17,6 +21,9 @@ size = Vector2(48, 3)
 [node name="platform_downward" type="StaticBody2D" unique_id=1876451469]
 collision_mask = 6
 script = ExtResource("1_ic707")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1486891706]
+occluder = SubResource("OccluderPolygon2D_ic707")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=84021175]
 texture = SubResource("CanvasTexture_gcbxe")

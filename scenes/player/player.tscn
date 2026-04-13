@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="6_75vfm"]
 [ext_resource type="Resource" uid="uid://cflgu8ipnrtd5" path="res://resources/SwordAttack.tres" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://bdgnt4radvneq" path="res://scenes/player/status_effect_handler.gd" id="8_qek5x"]
-[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="9_h17s1"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="10_fm80t"]
 [ext_resource type="Script" uid="uid://beqmulvq8mfrm" path="res://scenes/player/player_light.gd" id="10_je7p5"]
+[ext_resource type="Script" uid="uid://dhhg1m2fntktk" path="res://scenes/player/player_light_2.gd" id="12_fm80t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_fm80t"]
 diffuse_texture = ExtResource("1_8afob")
@@ -407,6 +408,7 @@ collision_mask = 64
 attack_data = ExtResource("7_0owmy")
 
 [node name="CollisionShape2D" parent="Attack/Hitbox" index="0" unique_id=1718400250]
+visible = false
 position = Vector2(11, 1)
 rotation = 0.73129296
 shape = SubResource("CapsuleShape2D_je7p5")
@@ -454,17 +456,22 @@ process_material = SubResource("ParticleProcessMaterial_fcs02")
 position = Vector2(-0.29000854, -0.98498535)
 color = Color(0.9490196, 0.4392157, 0, 0.6862745)
 energy = 5.48
-texture = ExtResource("9_h17s1")
-texture_scale = 0.3
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_filter_smooth = 28.7
+texture = ExtResource("10_fm80t")
+texture_scale = 1.1
 script = ExtResource("10_je7p5")
 
 [node name="PlayerLight2" type="PointLight2D" parent="." unique_id=1073994456]
+visible = false
 position = Vector2(-0.29000854, -0.98498535)
 color = Color(0.99999994, 0.48882443, 0.13142455, 0.6862745)
 energy = 1.75
 range_item_cull_mask = 2
-texture = ExtResource("9_h17s1")
-texture_scale = 0.25
+texture = ExtResource("10_fm80t")
+texture_scale = 1.1
+script = ExtResource("12_fm80t")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 

@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://brpanedh4pga7" path="res://assets/tiles/Trampoor Dungeon Tiles/Sprites/spores.png" id="2_iog80"]
 [ext_resource type="Resource" uid="uid://c383tawlrstb8" path="res://resources/SporePlantData.tres" id="2_pc0hd"]
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="4_j2ssu"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="4_yp82x"]
 [ext_resource type="Resource" uid="uid://csydap2jgm6ks" path="res://resources/SporeAttack.tres" id="5_6h6fh"]
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="6_pqq6c"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="7_pc0hd"]
-[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="9_ghff2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgjw6"]
 atlas = ExtResource("1_jx11b")
@@ -158,8 +158,8 @@ position = Vector2(-0.20716095, -0.42507553)
 color = Color(0.6073548, 0.084555335, 0.77938527, 0.68600005)
 energy = 3.0
 shadow_enabled = true
-texture = ExtResource("9_ghff2")
-texture_scale = 0.33
+texture = ExtResource("4_yp82x")
+texture_scale = 1.3
 
 [node name="PointLight2D6" type="PointLight2D" parent="Plant" unique_id=172500443]
 position = Vector2(-0.20716095, -0.42507553)
@@ -167,8 +167,7 @@ color = Color(0.7606741, 0.22995201, 0.9567091, 0.6862745)
 energy = 1.75
 range_item_cull_mask = 2
 shadow_enabled = true
-texture = ExtResource("9_ghff2")
-texture_scale = 0.25
+texture = ExtResource("4_yp82x")
 
 [node name="Spores" type="AnimatedSprite2D" parent="." unique_id=340923921]
 position = Vector2(25, 0)
@@ -181,8 +180,7 @@ position = Vector2(-2.234974, -0.05653763)
 color = Color(0.66919136, 0.12003247, 0.8556824, 0.6862745)
 energy = 1.75
 shadow_enabled = true
-texture = ExtResource("9_ghff2")
-texture_scale = 0.25
+texture = ExtResource("4_yp82x")
 height = 1.0
 
 [node name="Attack" type="Node2D" parent="." unique_id=1636569885]

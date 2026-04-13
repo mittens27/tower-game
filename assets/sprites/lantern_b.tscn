@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://0q40ryd0p17u"]
 
 [ext_resource type="Texture2D" uid="uid://nlxrfjax6ak3" path="res://assets/sprites/lantern.png" id="1_3c4ho"]
-[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="2_7a55u"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="2_7a55u"]
 [ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="3_renb1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sh7bc"]
@@ -72,7 +72,10 @@ offset = Vector2(-4, -3)
 position = Vector2(0, 3.995)
 color = Color(0.7, 0.30333334, 0, 0.8745098)
 energy = 8.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_filter_smooth = 29.8
 texture = ExtResource("2_7a55u")
-texture_scale = 0.4
+texture_scale = 1.5
 height = 4.0
 script = ExtResource("3_renb1")

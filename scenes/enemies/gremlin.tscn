@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bta2akcrqlrro" path="res://assets/sprites/enemyGremlin_n.png" id="4_mxaoc"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="4_wjuu7"]
 [ext_resource type="Resource" uid="uid://db6ukjgv4gmvn" path="res://resources/GremlinAttackData.tres" id="5_2jnc4"]
-[ext_resource type="Texture2D" uid="uid://dbmkorxlquile" path="res://assets/textures/texture_lightPixelated.png" id="8_2jnc4"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="9_mxaoc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_kdcby"]
 diffuse_texture = ExtResource("1_8f2tl")
@@ -134,9 +134,9 @@ debug_color = Color(0.2494027, 0.6358461, 0, 0.41960785)
 color = Color(1, 1, 0.38109186, 0.83100003)
 energy = 2.0
 range_item_cull_mask = 2
-texture = ExtResource("8_2jnc4")
+texture = ExtResource("9_mxaoc")
 offset = Vector2(3.835, -2.25)
-texture_scale = 0.02
+texture_scale = 0.08
 height = 4.0
 
 [editable path="Attack/Hitbox"]

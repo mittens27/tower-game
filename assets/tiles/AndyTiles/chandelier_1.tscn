@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://buofoy3h3gilk"]
+
+[ext_resource type="Texture2D" uid="uid://cgghlg0yulqwj" path="res://assets/tiles/AndyTiles/chandeliers_sheet.png" id="1_dfdsr"]
+[ext_resource type="Texture2D" uid="uid://be7saxl4euon3" path="res://assets/tiles/AndyTiles/chandeliers_sheet_n.png" id="2_ngvyx"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="3_yqoer"]
+[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="4_7m78a"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yqoer"]
+diffuse_texture = ExtResource("1_dfdsr")
+normal_texture = ExtResource("2_ngvyx")
+
+[sub_resource type="Animation" id="Animation_7m78a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_r7yv7"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 4, 6, 8, 10, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7hfl"]
+_data = {
+&"RESET": SubResource("Animation_7m78a"),
+&"idle": SubResource("Animation_r7yv7")
+}
+
+[node name="chandelier1" type="Node2D" unique_id=440232916]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=312412988]
+light_mask = 2
+texture = SubResource("CanvasTexture_yqoer")
+hframes = 2
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1692963611]
+libraries/ = SubResource("AnimationLibrary_c7hfl")
+autoplay = &"idle"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1007936624]
+position = Vector2(0, 22.160725)
+color = Color(0.7, 0.30333334, 0, 0.8745098)
+energy = 8.0
+texture = ExtResource("3_yqoer")
+texture_scale = 2.0
+height = 4.0
+script = ExtResource("4_7m78a")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1661964707]
+position = Vector2(0, 0.73)
+color = Color(0.7, 0.30333334, 0, 0.8745098)
+energy = 3.0
+range_item_cull_mask = 2
+texture = ExtResource("3_yqoer")
+height = 4.0
+script = ExtResource("4_7m78a")
