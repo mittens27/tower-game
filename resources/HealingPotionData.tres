@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_ehg4e")
 type = "healing_potion"
+healing = 2
 collect_sound = "healing_potion"
 effect = "heal"
 metadata/_custom_type_script = "uid://dpibr0csr2op4"

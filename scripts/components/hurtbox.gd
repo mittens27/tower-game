@@ -18,6 +18,12 @@ func _on_area_entered(area):
 	hit_received.emit(area.attack_data, area.global_position)
 	
 	Events.player_hurt.emit(get_parent())
+
+	Events.attack_landed.emit(
+		area.get_parent(),   # attacker
+		get_parent(),        # target
+		area.attack_data
+	)
 	
 	if get_parent().is_in_group("player"):
 		start_invulnerability()

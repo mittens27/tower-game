@@ -13,6 +13,9 @@ var state: EnemyState = EnemyState.WALK
 @onready var hurtbox := $Hurtbox
 @onready var sprite := $Sprite2D
 @onready var anim := $AnimationPlayer
+@onready var effect_handler := $StatusEffectHandler
+
+var flash_tween: Tween
 
 signal enemy_died()
 
@@ -28,14 +31,20 @@ var turn_cooldown := 0.1
 var turn_timer := 0.0
 
 var player: Node2D = null
-var player_in_range := false
+var is_aggro := false
 var can_attack := true
 var is_attacking := false
+@export var aggro_memory_time := 2.0
+var aggro_timer := 0.0
 
 var last_hit_source_pos: Vector2 = Vector2.ZERO
 
+var knockback_velocity := Vector2.ZERO
+var knockback_decay: float
+
 func _ready():
 	apply_enemy_data()
+	sprite.material = sprite.material.duplicate()
 	
 	hurtbox.hit_received.connect(_on_hit_received)
 	health_component.died.connect(_on_died)
@@ -48,16 +57,29 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
+	if player:
+		aggro_timer = aggro_memory_time
+		is_aggro = true
+	else:
+		aggro_timer -= delta
+		if aggro_timer <= 0:
+			is_aggro = false
+	
 	if is_attacking:
 		velocity.x = 0
 	else:
-		if player_in_range:
+		if is_aggro:
 			chase_player()
 		else:
 			patrol(delta)
 		
 	ground_check.scale.x = 1 if (facing_direction == 1) else -1
 
+	#--- KNOCKBACK ---
+	velocity = velocity.lerp(knockback_velocity, 0.5)
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+	knockback_velocity = knockback_velocity.limit_length(150)
+	
 	move_and_slide()
 
 	match state:
@@ -67,7 +89,7 @@ func _physics_process(delta):
 			anim.play("idle_right")
 		EnemyState.WALK:
 			if not is_attacking:
-				if player_in_range:
+				if is_aggro:
 					anim.set_speed_scale(2)
 					velocity.x = facing_direction * speed * 1.5
 				else:
@@ -99,10 +121,11 @@ func _on_hit_received(attack_data, source_position: Vector2):
 	last_hit_source_pos = source_position
 	health_component.damage(attack_data.damage)
 	apply_knockback(attack_data.knockback, source_position)
+	flash_white()
 	
 func apply_knockback(force, source_position: Vector2):
 	var knockback_dir = (global_position - source_position).normalized()
-	velocity = knockback_dir * force
+	knockback_velocity = knockback_dir * force
 
 func _on_died():
 	var hit_position = global_position
@@ -142,12 +165,10 @@ func spawn_blood(hit_position: Vector2, source_pos: Vector2):
 func _on_detection_body_entered(body):
 	if body.is_in_group("player"):
 		player = body
-		player_in_range = true
 
 func _on_detection_body_exited(body):
 	if body.is_in_group("player"):
 		player = null
-		player_in_range = false
 
 func chase_player():
 	if player == null:
@@ -185,3 +206,21 @@ func _on_animation_player_animation_finished(anim_name: StringName):
 		
 		await get_tree().create_timer(1.5).timeout
 		can_attack = true
+
+func apply_attack(attack_data, source_position):
+	health_component.damage(attack_data.damage)
+	flash_white()
+	
+func flash_white():
+	if flash_tween:
+		flash_tween.kill()
+
+	sprite.material.set_shader_parameter("flash_amount", 1.0)
+
+	flash_tween = create_tween()
+	flash_tween.tween_method(
+		func(value): sprite.material.set_shader_parameter("flash_amount", value),
+		1.0,
+		0.0,
+		0.08
+	)

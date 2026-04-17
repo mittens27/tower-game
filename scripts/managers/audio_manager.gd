@@ -63,6 +63,8 @@ func play_sfx(id: String, position: Vector2):
 	player.finished.connect(player.queue_free)
 
 func _on_attack_landed(attacker, target, attack_data):
+	if attack_data == null:
+		return
 	if attack_data.hit_sound != "" and attacker.is_in_group("player"):
 		play_sfx(attack_data.hit_sound, target.global_position)
 

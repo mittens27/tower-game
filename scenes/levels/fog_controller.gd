@@ -3,7 +3,7 @@ extends Node2D
 @export var fog_layers: Dictionary[String, Node]
 
 func _ready():
-	visible = true
+	#visible = true
 	
 	Events.reveal_requested.connect(_on_reveal_requested)
 	

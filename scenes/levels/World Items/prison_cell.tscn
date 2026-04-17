@@ -1,0 +1,134 @@
+[gd_scene format=4 uid="uid://b8u5po3wdkayq"]
+
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="1_7tj73"]
+[ext_resource type="Texture2D" uid="uid://c1bwd181mafom" path="res://assets/tiles/AndyTiles/AndyTiles_2.6.png" id="1_qipq2"]
+[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="2_nng4t"]
+[ext_resource type="PackedScene" uid="uid://bfrbrvymuu1ix" path="res://scenes/misc/fire.tscn" id="3_b7gjd"]
+[ext_resource type="TileSet" uid="uid://ra0cfi3t7vo0" path="res://assets/tiles/AndyTiles/AndyTiles.tres" id="5_1rgtb"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_t1fr7"]
+cull_mode = 2
+polygon = PackedVector2Array(-4, -20, -4, 31, -5, 31, -5, 30, -7, 30, -7, -23, -4, -23)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7ijvl"]
+cull_mode = 2
+polygon = PackedVector2Array(0, -12, 2, -12, 2, 30, 0, 30)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qr4j7"]
+cull_mode = 2
+polygon = PackedVector2Array(6, -12, 8, -12, 8, 30, 6, 30)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q5wbp"]
+cull_mode = 2
+polygon = PackedVector2Array(12, -12, 14, -12, 14, 30, 12, 30)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y3ysp"]
+cull_mode = 2
+polygon = PackedVector2Array(-13, -12, -11, -12, -11, 29, -13, 29)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gl8kx"]
+cull_mode = 1
+polygon = PackedVector2Array(-17, 30, -17, 2, -16, 2, -16, -1, -17, -1, -17, -16, -30, -16, -31, 30)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ilvba"]
+cull_mode = 2
+polygon = PackedVector2Array(18, 29, 18, 3, 17, 3, 17, 2, 16, 2, 16, -1, 18, -1, 18, -18, 38, -18, 38, 30)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1xl35"]
+cull_mode = 2
+polygon = PackedVector2Array(-17, -10, 19, -10, 19, -7, -18, -7, -18, -10)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_84skm"]
+cull_mode = 2
+polygon = PackedVector2Array(-18, -5, 20, -5, 20, -2, -18, -2)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lptv4"]
+cull_mode = 2
+polygon = PackedVector2Array(-19, 5, -4, 5, -4, 4, 19, 4, 19, 8, -19, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ka323"]
+cull_mode = 2
+polygon = PackedVector2Array(-18, 15, -6, 15, -6, 14, 1, 14, 1, 15, 22, 15, 22, 18, 0, 18, 0, 19, -4, 19, -4, 18, -20, 18, -19, 15)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jh16k"]
+cull_mode = 2
+polygon = PackedVector2Array(-19, 25, 22, 25, 22, 28, -19, 28)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bu4sd"]
+cull_mode = 1
+polygon = PackedVector2Array(-16, -10, -16, -12, -11, -17, -9, -18, -4, -20, 0, -21, 3, -21, 7, -19, 11, -17, 16, -12, 17, -10, 28, -10, 25, -16, 17, -24, 5, -30, -5, -30, -15, -26, -22, -19, -25, -10)
+
+[node name="Node2D" type="Node2D" unique_id=1697738673]
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=2069414665]
+y_sort_enabled = true
+position = Vector2(-9.911621, 6.01276)
+color = Color(0.7, 0.30333334, 0, 0.8745098)
+energy = 6.06
+shadow_enabled = true
+texture = ExtResource("1_7tj73")
+texture_scale = 7.26
+height = 8.0
+script = ExtResource("2_nng4t")
+
+[node name="fire3" parent="." unique_id=1001483884 instance=ExtResource("3_b7gjd")]
+visible = false
+z_index = -6
+position = Vector2(-1.9116211, 5.017761)
+
+[node name="PrisonCell" type="Sprite2D" parent="." unique_id=1020311682]
+z_index = 8
+y_sort_enabled = true
+position = Vector2(0, -3)
+texture = ExtResource("1_qipq2")
+region_enabled = true
+region_rect = Rect2(0, 128, 64, 64)
+
+[node name="horizontalOccluder1" type="LightOccluder2D" parent="PrisonCell" unique_id=1944854858]
+y_sort_enabled = true
+occluder = SubResource("OccluderPolygon2D_t1fr7")
+
+[node name="horizontalOccluder2" type="LightOccluder2D" parent="PrisonCell" unique_id=1539977807]
+occluder = SubResource("OccluderPolygon2D_7ijvl")
+
+[node name="horizontalOccluder3" type="LightOccluder2D" parent="PrisonCell" unique_id=36731546]
+occluder = SubResource("OccluderPolygon2D_qr4j7")
+
+[node name="horizontalOccluder4" type="LightOccluder2D" parent="PrisonCell" unique_id=1338904838]
+occluder = SubResource("OccluderPolygon2D_q5wbp")
+
+[node name="horizontalOccluder5" type="LightOccluder2D" parent="PrisonCell" unique_id=1036864120]
+occluder = SubResource("OccluderPolygon2D_y3ysp")
+
+[node name="horizontalOccluder6" type="LightOccluder2D" parent="PrisonCell" unique_id=1689634201]
+occluder = SubResource("OccluderPolygon2D_gl8kx")
+
+[node name="horizontalOccluder7" type="LightOccluder2D" parent="PrisonCell" unique_id=1601914131]
+occluder = SubResource("OccluderPolygon2D_ilvba")
+
+[node name="verticalOccluder1" type="LightOccluder2D" parent="PrisonCell" unique_id=798001450]
+occluder = SubResource("OccluderPolygon2D_1xl35")
+
+[node name="verticalOccluder2" type="LightOccluder2D" parent="PrisonCell" unique_id=780145762]
+occluder = SubResource("OccluderPolygon2D_84skm")
+
+[node name="verticalOccluder3" type="LightOccluder2D" parent="PrisonCell" unique_id=1668538346]
+occluder = SubResource("OccluderPolygon2D_lptv4")
+
+[node name="verticalOccluder4" type="LightOccluder2D" parent="PrisonCell" unique_id=1214354363]
+occluder = SubResource("OccluderPolygon2D_ka323")
+
+[node name="verticalOccluder5" type="LightOccluder2D" parent="PrisonCell" unique_id=2004539549]
+occluder = SubResource("OccluderPolygon2D_jh16k")
+
+[node name="verticalOccluder6" type="LightOccluder2D" parent="PrisonCell" unique_id=100054565]
+occluder = SubResource("OccluderPolygon2D_bu4sd")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=894067390]
+z_index = -7
+tile_map_data = PackedByteArray("AAABAAEAAQANAAgAAAACAAEAAQALAAYAAAADAAEAAQAPAAgAAAAEAAEAAQAOAAgAAAABAAAAAQAPAAYAAAACAAAAAQAPAAYAAAADAAAAAQALAAYAAAAEAAAAAQALAAgAAAABAP//AQALAAYAAAACAP//AQALAAgAAAADAP//AQAMAAYAAAAEAP//AQAMAAgAAAAEAP7/AQAOAAgAAAADAP7/AQAPAAgAAAACAP7/AQAPAAgAAAABAP7/AQAMAAgAAAAAAP7/AQANAAYAAAD///7/AQANAAYAAAD+//7/AQALAAgAAAD+////AQAMAAYAAAD+/wAAAQAMAAcAAAD+/wEAAQAMAAgAAAD9/wEAAQANAAgAAAD8/wEAAQALAAgAAAD7/wEAAQAPAAgAAAD9/wAAAQANAAgAAAD8/wAAAQAOAAYAAAD7/wAAAQALAAYAAAD9////AQAMAAgAAAD8////AQALAAYAAAD7////AQALAAgAAAD9//7/AQAOAAgAAAD8//7/AQAOAAgAAAD7//7/AQAMAAYAAAD/////AQANAAYAAAD//wAAAQANAAcAAAD//wEAAQANAAgAAAAAAP//AQAOAAYAAAAAAAAAAQAOAAcAAAAAAAEAAQAOAAgAAAA=")
+tile_set = ExtResource("5_1rgtb")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=32383209]
+tile_map_data = PackedByteArray("AAD7/wEAAQALAAEAAAD7/wIAAQALAAIAAAD8/wEAAQAMAAEAAAD8/wIAAQAMAAIAAAD9/wEAAQANAAEAAAD9/wIAAQANAAIAAAD+/wEAAQAMAAEAAAD+/wIAAQAMAAIAAAD//wEAAQANAAEAAAD//wIAAQANAAIAAAAAAAEAAQAMAAEAAAAAAAIAAQAMAAIAAAABAAEAAQANAAEAAAABAAIAAQANAAIAAAACAAEAAQAMAAEAAAACAAIAAQAMAAIAAAADAAEAAQANAAEAAAADAAIAAQANAAIAAAAEAAEAAQAOAAEAAAAEAAIAAQAOAAIAAAA=")
+tile_set = ExtResource("5_1rgtb")

@@ -9,6 +9,7 @@ colors = PackedColorArray(0.11372549, 0, 0, 1, 0.101960786, 0, 0, 0.8117647, 1, 
 
 [resource]
 script = ExtResource("1_lclll")
+knockback_decay = 500.0
 blood_gradient = SubResource("Gradient_uwj7t")
 blood_scene = ExtResource("1_uwj7t")
 metadata/_custom_type_script = "uid://bo0sfcw3krgx8"

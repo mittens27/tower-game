@@ -4,11 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://dtasny4yxngop" path="res://assets/sprites/orc.png" id="2_1jjpi"]
 [ext_resource type="Resource" uid="uid://desmm7otx5fgq" path="res://resources/OrcData.tres" id="2_4svvi"]
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="3_4svvi"]
+[ext_resource type="Shader" uid="uid://dhh4sjefssey5" path="res://scripts/components/flash_white.gdshader" id="3_nbio8"]
 [ext_resource type="Texture2D" uid="uid://cq070djtx5hyu" path="res://assets/sprites/orc_n.png" id="4_aijhm"]
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="4_ff5pv"]
 [ext_resource type="Resource" uid="uid://cytq5palccj62" path="res://resources/EnemyTouchAttackData.tres" id="5_4svvi"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="5_aijhm"]
 [ext_resource type="Resource" uid="uid://csb1pgnsm463p" path="res://resources/OrcAxeAttack.tres" id="6_ff5pv"]
+[ext_resource type="PackedScene" uid="uid://denmpycfkp0l4" path="res://scripts/components/status_effect_handler.tscn" id="10_m6j48"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5xyw"]
+shader = ExtResource("3_nbio8")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_m6j48"]
 diffuse_texture = ExtResource("2_1jjpi")
@@ -312,6 +318,7 @@ script = ExtResource("1_hbdu5")
 enemy_data = ExtResource("2_4svvi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=231033567]
+material = SubResource("ShaderMaterial_b5xyw")
 texture = SubResource("CanvasTexture_m6j48")
 hframes = 30
 frame = 3
@@ -361,6 +368,7 @@ shape = SubResource("CapsuleShape2D_4svvi")
 debug_color = Color(0.9916528, 0, 0.26881176, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="AxeAttack/Hitbox/CollisionShape2D" index="0" unique_id=246901032]
+visible = false
 modulate = Color(0.56078434, 0, 0, 1)
 z_index = 2
 position = Vector2(0.48098564, -0.42691422)
@@ -386,6 +394,9 @@ collision_mask = 2
 visible = false
 shape = SubResource("CircleShape2D_4svvi")
 debug_color = Color(0.65396655, 0.33552757, 0.9836567, 0.41960785)
+
+[node name="StatusEffectHandler" parent="." unique_id=1169316556 instance=ExtResource("10_m6j48")]
+position = Vector2(8.471365, 19.051956)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

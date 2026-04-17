@@ -1,0 +1,319 @@
+[gd_scene format=3 uid="uid://bmj0pvgix5v8o"]
+
+[ext_resource type="Script" uid="uid://c6w1j2i40agqb" path="res://scenes/enemies/smoke_mask.gd" id="1_c8nmw"]
+[ext_resource type="Texture2D" uid="uid://d2rjjovjqdkx1" path="res://assets/sprites/Andy Assets/enemy_SmokeMask_masks.png" id="1_hdf87"]
+[ext_resource type="Resource" uid="uid://dpq24ygvefnhm" path="res://resources/SmokeMaskData.tres" id="2_am4aj"]
+[ext_resource type="Texture2D" uid="uid://doatdd6nygkko" path="res://assets/sprites/Andy Assets/enemy_SmokeMask_masks_n.png" id="2_c8nmw"]
+[ext_resource type="Texture2D" uid="uid://cxdu0s6d37aj1" path="res://assets/sprites/Andy Assets/enemy_SmokeMask_smokes.png" id="3_j2p6a"]
+[ext_resource type="Shader" uid="uid://dhh4sjefssey5" path="res://scripts/components/flash_white.gdshader" id="3_ybhmo"]
+[ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="5_vo0ou"]
+[ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="6_pwnwp"]
+[ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="7_ybhmo"]
+[ext_resource type="Resource" uid="uid://cytq5palccj62" path="res://resources/EnemyTouchAttackData.tres" id="8_pwnwp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_am4aj"]
+shader = ExtResource("3_ybhmo")
+shader_parameter/flash_amount = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vxl07"]
+diffuse_texture = ExtResource("1_hdf87")
+normal_texture = ExtResource("2_c8nmw")
+
+[sub_resource type="Animation" id="Animation_hdf87"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Smoke:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Mask:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ybhmo"]
+resource_name = "mask_attack"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mask:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.40000004, 0.53333336, 0.6666667, 0.8000001, 0.9333334, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+
+[sub_resource type="Animation" id="Animation_vo0ou"]
+resource_name = "mask_happy"
+length = 1.3333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mask:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336, 0.6, 0.6666667, 0.73333335, 0.8000001, 0.86666673, 0.9333334, 1, 1.0666667, 1.1333334, 1.2, 1.2666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_am4aj"]
+resource_name = "mask_hurt"
+length = 0.26666668
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mask:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [80, 81]
+}
+
+[sub_resource type="Animation" id="Animation_pwnwp"]
+resource_name = "mask_mad"
+length = 0.73333335
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mask:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336, 0.6, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+}
+
+[sub_resource type="Animation" id="Animation_oxld2"]
+resource_name = "mask_sad"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mask:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336, 0.6, 0.6666667, 0.73333335, 0.8000001, 0.86666673, 0.9333334, 1, 1.0666667, 1.1333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+}
+
+[sub_resource type="Animation" id="Animation_tj5p6"]
+resource_name = "mask_surprised_down"
+length = 1.3333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mask:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336, 0.6, 0.6666667, 0.73333335, 0.8000001, 0.86666673, 0.9333334, 1, 1.0666667, 1.1333334, 1.2, 1.2666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159]
+}
+
+[sub_resource type="Animation" id="Animation_60waa"]
+resource_name = "mask_surprised_side"
+length = 1.3333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Mask:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336, 0.6, 0.6666667, 0.73333335, 0.8000001, 0.86666673, 0.9333334, 1, 1.0666667, 1.1333334, 1.2, 1.2666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139]
+}
+
+[sub_resource type="Animation" id="Animation_j2p6a"]
+resource_name = "smoke_aggro"
+length = 0.6666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Smoke:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+}
+
+[sub_resource type="Animation" id="Animation_vxl07"]
+resource_name = "smoke_attack"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Smoke:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.40000004, 0.5, 0.6, 0.70000005, 0.8000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+
+[sub_resource type="Animation" id="Animation_c8nmw"]
+resource_name = "smoke_idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Smoke:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667, 0.53333336, 0.6, 0.6666667, 0.73333335, 0.8000001, 0.86666673, 0.9333334, 1, 1.0666667, 1.1333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2p6a"]
+_data = {
+&"RESET": SubResource("Animation_hdf87"),
+&"mask_attack": SubResource("Animation_ybhmo"),
+&"mask_happy": SubResource("Animation_vo0ou"),
+&"mask_hurt": SubResource("Animation_am4aj"),
+&"mask_mad": SubResource("Animation_pwnwp"),
+&"mask_sad": SubResource("Animation_oxld2"),
+&"mask_surprised_down": SubResource("Animation_tj5p6"),
+&"mask_surprised_side": SubResource("Animation_60waa"),
+&"smoke_aggro": SubResource("Animation_j2p6a"),
+&"smoke_attack": SubResource("Animation_vxl07"),
+&"smoke_idle": SubResource("Animation_c8nmw")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdf87"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_am4aj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxld2"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_60waa"]
+radius = 121.0
+
+[node name="Persona" type="CharacterBody2D" unique_id=1059293679]
+collision_layer = 4
+script = ExtResource("1_c8nmw")
+enemy_data = ExtResource("2_am4aj")
+
+[node name="Smoke" type="Sprite2D" parent="." unique_id=802918876]
+texture = ExtResource("3_j2p6a")
+hframes = 40
+vframes = 4
+frame = 1
+
+[node name="Mask" type="Sprite2D" parent="." unique_id=81137459]
+material = SubResource("ShaderMaterial_am4aj")
+position = Vector2(3, 0)
+texture = SubResource("CanvasTexture_vxl07")
+hframes = 40
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1983485047]
+root_node = NodePath("../CollisionShape2D")
+libraries/ = SubResource("AnimationLibrary_j2p6a")
+autoplay = &"mask_happy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=155105363]
+visible = false
+position = Vector2(3, 3)
+shape = SubResource("CircleShape2D_hdf87")
+
+[node name="HealthComponent" parent="." unique_id=899665252 instance=ExtResource("5_vo0ou")]
+
+[node name="Hurtbox" parent="." unique_id=115641812 instance=ExtResource("6_pwnwp")]
+collision_layer = 64
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=939149868]
+visible = false
+position = Vector2(3, 2)
+shape = SubResource("CircleShape2D_am4aj")
+debug_color = Color(0.70196074, 0, 0.5493139, 0.41960785)
+
+[node name="Attack" type="Node2D" parent="." unique_id=1359828660]
+
+[node name="Hitbox" parent="Attack" unique_id=1865862495 instance=ExtResource("7_ybhmo")]
+collision_layer = 32
+collision_mask = 16
+attack_data = ExtResource("8_pwnwp")
+
+[node name="CollisionShape2D" parent="Attack/Hitbox" index="0" unique_id=1718400250]
+visible = false
+shape = SubResource("CircleShape2D_oxld2")
+debug_color = Color(0.70196074, 0, 0, 0.41960785)
+
+[node name="Ray_Front" type="RayCast2D" parent="." unique_id=852765500]
+visible = false
+target_position = Vector2(25, 0)
+
+[node name="Ray_Up" type="RayCast2D" parent="." unique_id=459302859]
+visible = false
+target_position = Vector2(0, -25)
+
+[node name="Ray_Down" type="RayCast2D" parent="." unique_id=548741963]
+visible = false
+target_position = Vector2(0, 25)
+
+[node name="Detection" type="Area2D" parent="." unique_id=533366158]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection" unique_id=400266906]
+visible = false
+shape = SubResource("CircleShape2D_60waa")
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
+
+[editable path="Hurtbox"]
+[editable path="Attack/Hitbox"]

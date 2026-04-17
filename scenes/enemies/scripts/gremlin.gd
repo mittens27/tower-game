@@ -15,6 +15,7 @@ var state: EnemyState = EnemyState.WALK
 
 signal enemy_died()
 
+var flash_tween: Tween
 var room_controller: Node2D
 
 var gravity: float
@@ -30,6 +31,7 @@ var last_hit_source_pos: Vector2 = Vector2.ZERO
 
 func _ready():
 	apply_enemy_data()
+	sprite.material = sprite.material.duplicate()
 	
 	hurtbox.hit_received.connect(_on_hit_received)
 	health_component.died.connect(_on_died)
@@ -70,6 +72,7 @@ func _on_hit_received(attack_data, source_position: Vector2):
 	last_hit_source_pos = source_position
 	health_component.damage(attack_data.damage)
 	apply_knockback(attack_data.knockback, source_position)
+	flash_white()
 	
 func apply_knockback(force, source_position: Vector2):
 	var knockback_dir = (global_position - source_position).normalized()
@@ -114,3 +117,17 @@ func spawn_blood(hit_position: Vector2, source_pos: Vector2):
 	blood.set_direction(direction)
 	
 	blood.restart()
+	
+func flash_white():
+	if flash_tween:
+		flash_tween.kill()
+
+	sprite.material.set_shader_parameter("flash_amount", 1.0)
+
+	flash_tween = create_tween()
+	flash_tween.tween_method(
+		func(value): sprite.material.set_shader_parameter("flash_amount", value),
+		1.0,
+		0.0,
+		0.08
+	)

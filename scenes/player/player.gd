@@ -17,6 +17,8 @@ var state : PlayerState = PlayerState.IDLE
 @export var player_data: PlayerData
 @export var drop_through_time := 0.2
 
+var flash_tween: Tween
+
 const SPEED = 175.0
 const JUMP_VELOCITY = -250.0
 
@@ -35,6 +37,8 @@ func _ready():
 	health_component.died.connect(_on_died)
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	hurtbox.hit_received.connect(_on_hit_received)
+	Events.attack_landed.connect(_on_attack_landed)
+
 
 	apply_player_data()
 
@@ -142,6 +146,8 @@ func _on_hit_received(attack_data, source_position: Vector2):
 	health_component.damage(attack_data.damage)
 	apply_knockback(attack_data.knockback, source_position)
 	Events.player_hurt.emit(self)
+	
+	flash_white()
 
 func apply_knockback(force, source_position: Vector2):
 	var knockback_dir = (global_position - source_position).normalized()
@@ -150,6 +156,7 @@ func apply_knockback(force, source_position: Vector2):
 
 func apply_attack(attack_data, source_position):
 	health_component.damage(attack_data.damage)
+	flash_white()
 		
 func potion(potion_data):
 	Events.potion_collected.emit(self, potion_data)
@@ -158,6 +165,7 @@ func potion(potion_data):
 		effect_handler.activate(potion_data.effect)
 		await get_tree().create_timer(1).timeout
 		effect_handler.deactivate(potion_data.effect)
+		
 func jump():
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -229,3 +237,31 @@ func _on_animation_player_animation_finished(anim_name: StringName):
 func play_anim(name: String):
 	if anim.current_animation != name:
 		anim.play(name)
+		
+func flash_white():
+	if flash_tween:
+		flash_tween.kill()
+
+	sprite.material.set_shader_parameter("flash_amount", 1.0)
+
+	flash_tween = create_tween()
+	flash_tween.tween_method(
+		func(value): sprite.material.set_shader_parameter("flash_amount", value),
+		1.0,
+		0.0,
+		0.08
+	)
+	
+func apply_attack_recoil(force: float, direction: Vector2):
+	velocity = -direction.normalized() * force
+	velocity.y = force * -0.15
+
+func _on_attack_landed(attacker, target, attack_data):
+	if not attacker.is_in_group("player"):
+		return
+	
+	print("Player landed a hit!")
+	
+	var attack_dir = Vector2(facing_direction, 0)
+	apply_attack_recoil(500.0, attack_dir)
+	GEffects.hit_stop()

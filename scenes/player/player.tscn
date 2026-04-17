@@ -3,15 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://bhpbpao7ftdtc" path="res://assets/sprites/characterBlueCape.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://byf5ucfu2vddv" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Resource" uid="uid://cepjoktcejudi" path="res://resources/PlayerData.tres" id="2_lvxji"]
+[ext_resource type="Shader" uid="uid://dhh4sjefssey5" path="res://scripts/components/flash_white.gdshader" id="3_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://bnuqntwp4bw2j" path="res://assets/sprites/characterBlueCape_n.png" id="4_je7p5"]
 [ext_resource type="PackedScene" uid="uid://pq35s22aw7t4" path="res://scripts/components/health_component.tscn" id="4_p47bc"]
 [ext_resource type="PackedScene" uid="uid://bpkbgmamdcfk6" path="res://scripts/components/hurtbox.tscn" id="5_p47bc"]
 [ext_resource type="PackedScene" uid="uid://bmhwled4ihj2o" path="res://scripts/components/hitbox.tscn" id="6_75vfm"]
 [ext_resource type="Resource" uid="uid://cflgu8ipnrtd5" path="res://resources/SwordAttack.tres" id="7_0owmy"]
-[ext_resource type="Script" uid="uid://bdgnt4radvneq" path="res://scenes/player/status_effect_handler.gd" id="8_qek5x"]
+[ext_resource type="PackedScene" uid="uid://denmpycfkp0l4" path="res://scripts/components/status_effect_handler.tscn" id="9_fm80t"]
 [ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="10_fm80t"]
 [ext_resource type="Script" uid="uid://beqmulvq8mfrm" path="res://scenes/player/player_light.gd" id="10_je7p5"]
 [ext_resource type="Script" uid="uid://dhhg1m2fntktk" path="res://scenes/player/player_light_2.gd" id="12_fm80t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugbui"]
+shader = ExtResource("3_gx1jg")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_fm80t"]
 diffuse_texture = ExtResource("1_8afob")
@@ -23,7 +28,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
@@ -35,7 +40,7 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Attack/Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
+tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
@@ -47,7 +52,7 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Attack/Hitbox/CollisionShape2D:shape:radius")
-tracks/2/interp = 1
+tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
@@ -59,7 +64,7 @@ tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath("Attack/Hitbox/CollisionShape2D:shape:height")
-tracks/3/interp = 1
+tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
@@ -71,7 +76,7 @@ tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Attack/Hitbox:monitorable")
-tracks/4/interp = 1
+tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
@@ -152,7 +157,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1171875, 0.234375, 0.3515625, 0.46875, 0.5859375, 0.703125, 0.8203125, 0.9375, 1.0546875),
@@ -169,7 +174,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
@@ -202,7 +207,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
@@ -244,127 +249,11 @@ radius = 6.0
 height = 22.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p47bc"]
-radius = 7.0
-height = 22.0
+radius = 4.419548
+height = 18.04036
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_je7p5"]
 height = 22.0
-
-[sub_resource type="Gradient" id="Gradient_qek5x"]
-colors = PackedColorArray(0.5222768, 0.6771253, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5gtgg"]
-gradient = SubResource("Gradient_qek5x")
-
-[sub_resource type="Curve" id="Curve_h17s1"]
-_data = [Vector2(0, 0.38933122), 0.0, 0.0, 0, 0, Vector2(0.49809885, 1), 0.0, 0.0, 0, 0, Vector2(0.76045626, 0.58598727), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_je7p5"]
-curve = SubResource("Curve_h17s1")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fm80t"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 20.0
-spread = 180.0
-initial_velocity_min = 9.4
-initial_velocity_max = 10.599999
-gravity = Vector3(0, -5, 0)
-damping_min = 10.0
-damping_max = 20.0
-scale_min = 2.0
-scale_max = 3.0
-scale_curve = SubResource("CurveTexture_je7p5")
-color_ramp = SubResource("GradientTexture1D_5gtgg")
-
-[sub_resource type="Gradient" id="Gradient_5gtgg"]
-colors = PackedColorArray(0, 0.7983431, 3.85046e-07, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_h17s1"]
-gradient = SubResource("Gradient_5gtgg")
-
-[sub_resource type="Curve" id="Curve_je7p5"]
-_data = [Vector2(0, 0.48248404), 0.0, 0.0, 0, 0, Vector2(0.5095057, 1), 0.0, 0.0, 0, 0, Vector2(0.7490494, 0.6066879), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_fm80t"]
-curve = SubResource("Curve_je7p5")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gx1jg"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 15.0
-spread = 50.0
-initial_velocity_min = 24.5
-initial_velocity_max = 25.5
-gravity = Vector3(0, -15, 0)
-damping_min = 15.000001
-damping_max = 25.000002
-scale_min = 1.9
-scale_max = 3.1
-scale_curve = SubResource("CurveTexture_fm80t")
-color_ramp = SubResource("GradientTexture1D_h17s1")
-
-[sub_resource type="Gradient" id="Gradient_h17s1"]
-offsets = PackedFloat32Array(0, 0.4978903, 1)
-colors = PackedColorArray(0.40784314, 0, 0, 1, 0.5411765, 0, 0, 0.7058824, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qek5x"]
-gradient = SubResource("Gradient_h17s1")
-
-[sub_resource type="Curve" id="Curve_fm80t"]
-_data = [Vector2(0, 0.04777074), 0.0, 0.0, 0, 0, Vector2(0.34600762, 1), 0.0, 0.0, 0, 0, Vector2(0.72243345, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_5gtgg"]
-curve = SubResource("Curve_fm80t")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugbui"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 10.0
-emission_ring_radius = 7.0
-emission_ring_inner_radius = 0.0
-emission_ring_cone_angle = 44.5
-spread = 50.0
-initial_velocity_min = 30.0
-initial_velocity_max = 40.0
-gravity = Vector3(0, 5, 0)
-scale_min = 2.0
-scale_max = 3.0
-scale_curve = SubResource("CurveTexture_5gtgg")
-color_ramp = SubResource("GradientTexture1D_qek5x")
-
-[sub_resource type="Gradient" id="Gradient_je7p5"]
-colors = PackedColorArray(0.86343604, 5.318448e-06, 7.70092e-07, 1, 1, 0, 0, 0.4392157)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fm80t"]
-gradient = SubResource("Gradient_je7p5")
-
-[sub_resource type="Curve" id="Curve_gx1jg"]
-_data = [Vector2(0, 0.516854), 0.0, 0.0, 0, 0, Vector2(0.50495046, 1), 0.0, 0.0, 0, 0, Vector2(0.7772277, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_ugbui"]
-curve = SubResource("Curve_gx1jg")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fcs02"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 12.0
-direction = Vector3(0, -1, 0)
-spread = 0.0
-initial_velocity_min = 25.0
-initial_velocity_max = 35.0
-gravity = Vector3(0, -10, 0)
-damping_min = 10.0
-damping_max = 20.0
-damping_curve = SubResource("CurveTexture_ugbui")
-scale_min = 0.5
-scale_max = 2.0
-color_ramp = SubResource("GradientTexture1D_fm80t")
 
 [node name="player" type="CharacterBody2D" unique_id=1202608503 groups=["player"]]
 z_index = 2
@@ -374,6 +263,7 @@ script = ExtResource("1_dovo2")
 player_data = ExtResource("2_lvxji")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=30323140]
+material = SubResource("ShaderMaterial_ugbui")
 scale = Vector2(2, 2)
 texture = SubResource("CanvasTexture_fm80t")
 hframes = 51
@@ -396,11 +286,11 @@ collision_mask = 32
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=939149868]
 visible = false
-position = Vector2(-2, 1)
+position = Vector2(-1.7707672, 1.5157766)
 shape = SubResource("CapsuleShape2D_p47bc")
 debug_color = Color(0.9764706, 0, 0, 0.41960785)
 
-[node name="Attack" type="Node2D" parent="." unique_id=1486490599]
+[node name="Attack" type="Node2D" parent="." unique_id=1486490599 groups=["player"]]
 
 [node name="Hitbox" parent="Attack" unique_id=1865862495 instance=ExtResource("6_75vfm")]
 collision_layer = 8
@@ -414,51 +304,14 @@ rotation = 0.73129296
 shape = SubResource("CapsuleShape2D_je7p5")
 debug_color = Color(0.6582311, 0.3219091, 1, 0.41960785)
 
-[node name="StatusEffectHandler" type="Node2D" parent="." unique_id=1240285234]
-script = ExtResource("8_qek5x")
-
-[node name="SporeParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1399445301]
-emitting = false
-lifetime = 3.5
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_fm80t")
-
-[node name="FireParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1180919311]
-emitting = false
-local_coords = true
-
-[node name="PoisonParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1198403413]
-rotation = -1.5707964
-emitting = false
-amount = 20
-lifetime = 3.0
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_gx1jg")
-
-[node name="BloodParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1940143901]
-position = Vector2(19.43, 0.975)
-emitting = false
-amount = 12
-lifetime = 0.8
-one_shot = true
-explosiveness = 0.7
-randomness = 0.5
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_ugbui")
-
-[node name="HealthParticles" type="GPUParticles2D" parent="StatusEffectHandler" unique_id=1439652051]
-position = Vector2(-1.78685, 2.2335625)
-emitting = false
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_fcs02")
+[node name="StatusEffectHandler" parent="." unique_id=1169316556 instance=ExtResource("9_fm80t")]
 
 [node name="PlayerLight" type="PointLight2D" parent="." unique_id=1590945527]
 position = Vector2(-0.29000854, -0.98498535)
 color = Color(0.9490196, 0.4392157, 0, 0.6862745)
 energy = 5.48
 shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_filter_smooth = 28.7
+shadow_filter_smooth = 15.0
 texture = ExtResource("10_fm80t")
 texture_scale = 1.1
 script = ExtResource("10_je7p5")
