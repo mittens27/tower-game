@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce176jy4ghikf"
-path="res://.godot/imported/AndyTiles_v1.5_shading.png-6ea4b11774f4475248b0cdac34242b5e.ctex"
+uid="uid://dannm0x1bs6vg"
+path="res://.godot/imported/Campfire.png-aecb5fcbfac9d580086e51b65ceff313.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/AndyTiles/AndyTiles_v1.5_shading.png"
-dest_files=["res://.godot/imported/AndyTiles_v1.5_shading.png-6ea4b11774f4475248b0cdac34242b5e.ctex"]
+source_file="res://assets/sprites/Andy Assets/Campfire.png"
+dest_files=["res://.godot/imported/Campfire.png-aecb5fcbfac9d580086e51b65ceff313.ctex"]
 
 [params]
 

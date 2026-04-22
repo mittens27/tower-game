@@ -3,13 +3,25 @@ extends Sprite2D
 @export var max_height: float
 @export var elevator: StaticBody2D
 
-@onready var elevator_local_start_y = to_local(elevator.global_position).y
+var elevator_local_start_y: float
+#@onready var elevator_local_start_y = to_local(elevator.global_position).y
 
-@onready var bottom_y = to_local(elevator.start_pos).y
-@onready var top_y = to_local(elevator.target_pos).y
-#var rect := region_rect
+var bottom_y: float
+var top_y: float
 
+func _ready():
+	if elevator == null:
+		push_error("Elevator reference is missing on %s" % name)
+		return
+	bottom_y = to_local(elevator.start_pos).y
+	top_y = to_local(elevator.target_pos).y
+	
+	print("Upward Elevator ref:", elevator)
+	
 func _process(_delta):
+	if elevator == null:
+		return
+	
 	var local_y = to_local(elevator.global_position).y
 	
 	# Normalize position between top and bottom

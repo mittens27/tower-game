@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://lsk12w7hgde8"]
 
 [ext_resource type="Script" uid="uid://bh4gxpeyfhh6p" path="res://scenes/levels/World Items/platform_downward.gd" id="1_ic707"]
-[ext_resource type="Texture2D" uid="uid://dwrcckl2teovt" path="res://assets/tiles/AndyTiles/AndyTiles_v4.png" id="2_su450"]
-[ext_resource type="Texture2D" uid="uid://b2qe7gk6y221c" path="res://assets/tiles/AndyTiles/AndyTiles_v4_n.png" id="3_4dt63"]
+[ext_resource type="Texture2D" uid="uid://cd1g2b70d568p" path="res://assets/tiles/AndyTiles/AndyTiles_v1.5.png" id="2_ic707"]
+[ext_resource type="Texture2D" uid="uid://be5y0okrgxmwq" path="res://assets/tiles/AndyTiles/AndyTiles_v1.5_n.png" id="3_su450"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ic707"]
 cull_mode = 1
 polygon = PackedVector2Array(-24, -7, -24, 0, -22, 2, 22, 2, 24, 0, 24, -7)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_gcbxe"]
-diffuse_texture = ExtResource("2_su450")
-normal_texture = ExtResource("3_4dt63")
+diffuse_texture = ExtResource("2_ic707")
+normal_texture = ExtResource("3_su450")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bdwb"]
 size = Vector2(48, 13)

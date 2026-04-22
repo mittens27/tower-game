@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://0q40ryd0p17u" path="res://assets/sprites/lantern_b.tscn" id="8_0ljvc"]
 [ext_resource type="Texture2D" uid="uid://cd10nn4kma7os" path="res://assets/tiles/Karisiori Tileset/Tiles/Tilesheet - WOODS.png" id="9_kqbd0"]
 [ext_resource type="Texture2D" uid="uid://uqjmgxwj6e1p" path="res://assets/sprites/Fort of Illusion/Layers/illusionFort.png" id="10_vdvgb"]
-[ext_resource type="Texture2D" uid="uid://b8qdl78xl44kj" path="res://assets/tiles/AndyTiles/AndyTiles.png" id="11_f5uxu"]
-[ext_resource type="Texture2D" uid="uid://dii7kvyebh70e" path="res://assets/tiles/AndyTiles/AndyTiles_n.png" id="13_f5uxu"]
+[ext_resource type="Texture2D" uid="uid://cd1g2b70d568p" path="res://assets/tiles/AndyTiles/AndyTiles_v1.5.png" id="11_f5uxu"]
+[ext_resource type="Texture2D" uid="uid://be5y0okrgxmwq" path="res://assets/tiles/AndyTiles/AndyTiles_v1.5_n.png" id="13_f5uxu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b6bv0"]
 texture = ExtResource("1_eny38")

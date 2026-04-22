@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://b881on6h45e5s"]
+
+[ext_resource type="Texture2D" uid="uid://dp7amoxb7jlwt" path="res://assets/tiles/AndyTiles/castleFireplace.png" id="1_l51ku"]
+[ext_resource type="Texture2D" uid="uid://dannm0x1bs6vg" path="res://assets/sprites/Andy Assets/Campfire.png" id="2_0gi60"]
+[ext_resource type="Texture2D" uid="uid://bfg7flbhqoj4p" path="res://assets/tiles/AndyTiles/castleFireplace_n.png" id="2_ohxc3"]
+[ext_resource type="Texture2D" uid="uid://j3j01it6bshn" path="res://assets/textures/new_light_texture.png" id="4_srh3p"]
+[ext_resource type="Script" uid="uid://b8w6hchkr777p" path="res://scripts/utilities/point_light_2d.gd" id="5_f2chh"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bnsg1"]
+diffuse_texture = ExtResource("1_l51ku")
+normal_texture = ExtResource("2_ohxc3")
+
+[sub_resource type="Animation" id="Animation_d025f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fire:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fireplace:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ohxc3"]
+resource_name = "idle"
+length = 1.125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fire:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fireplace:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15625, 0.3125, 0.46875, 0.625, 0.78125, 0.9375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_srh3p"]
+_data = {
+&"RESET": SubResource("Animation_d025f"),
+&"idle": SubResource("Animation_ohxc3")
+}
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x208g"]
+a = Vector2(1, -4)
+b = Vector2(51, -4)
+
+[node name="Fireplace" type="Node2D" unique_id=18594643]
+position = Vector2(0, 8)
+
+[node name="fireplace" type="Sprite2D" parent="." unique_id=2090579554]
+texture = SubResource("CanvasTexture_bnsg1")
+hframes = 8
+
+[node name="fire" type="Sprite2D" parent="." unique_id=2123031368]
+light_mask = 2
+position = Vector2(-1, 28.5)
+texture = ExtResource("2_0gi60")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1093510297]
+libraries/ = SubResource("AnimationLibrary_srh3p")
+autoplay = &"idle"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=380033539]
+position = Vector2(0, 31.160725)
+color = Color(0.7, 0.30333334, 0, 0.8745098)
+energy = 8.0
+texture = ExtResource("4_srh3p")
+texture_scale = 1.5
+height = 1.0
+script = ExtResource("5_f2chh")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1562390144]
+visible = false
+position = Vector2(0, 31.160725)
+color = Color(0.7, 0.30333334, 0, 0.8745098)
+energy = 1.5
+range_item_cull_mask = 2
+texture = ExtResource("4_srh3p")
+texture_scale = 0.75
+height = 1.0
+script = ExtResource("5_f2chh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2142827458]
+collision_layer = 2048
+collision_mask = 1031
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=61601846]
+position = Vector2(-26, 19)
+shape = SubResource("SegmentShape2D_x208g")
+one_way_collision = true

@@ -3,16 +3,25 @@ extends Sprite2D
 @export var max_height: float
 @export var elevator: StaticBody2D
 
-@onready var elevator_local_start_y = to_local(elevator.global_position).y
+var elevator_local_start_y: float
 
 var rect := region_rect
 
 func _ready():
-	#var rect := region_rect
+	if elevator == null:
+		push_error("Elevator reference is missing on %s" % name)
+		return
+	elevator_local_start_y = to_local(elevator.global_position).y
+	
 	rect.size.y = max_height
 	region_rect = rect
-		
+	
+	print("Upward Elevator ref:", elevator)
+	
 func _process(_delta):
+	if elevator == null:
+		return
+	
 	var local_elevator_pos = to_local(elevator.global_position)
 	
 	var moved_distance = local_elevator_pos.y - elevator_local_start_y

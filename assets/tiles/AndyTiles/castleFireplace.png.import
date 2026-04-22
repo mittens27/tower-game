@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2b7ivk02c22e"
-path="res://.godot/imported/Campfire.png-a78ad0b054a688f3d77b6f126a34bd6b.ctex"
+uid="uid://dp7amoxb7jlwt"
+path="res://.godot/imported/castleFireplace.png-88eb174b10ce74577d6fe6866e48f77b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Campfire.png"
-dest_files=["res://.godot/imported/Campfire.png-a78ad0b054a688f3d77b6f126a34bd6b.ctex"]
+source_file="res://assets/tiles/AndyTiles/castleFireplace.png"
+dest_files=["res://.godot/imported/castleFireplace.png-88eb174b10ce74577d6fe6866e48f77b.ctex"]
 
 [params]
 

@@ -217,6 +217,7 @@ func is_on_one_way_platform() -> bool:
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
+		
 		if collider is TileMapLayer:
 			var tilemap := collider as TileMapLayer
 			
@@ -227,7 +228,10 @@ func is_on_one_way_platform() -> bool:
 			
 			if tile_data and tile_data.get_custom_data("one_way"):
 				return true
-	
+		if collider != TileMapLayer:
+			var mask_value = collider.get_collision_mask()
+			if mask_value == 1031:
+				return true
 	return false
 
 func _on_animation_player_animation_finished(anim_name: StringName):

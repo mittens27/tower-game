@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uonpbo42klot"
-path="res://.godot/imported/AndyTiles_v1.2_n.png-0ad533ecd60c7ad5b85c350613c0b140.ctex"
+uid="uid://cj2444jvlfpnw"
+path="res://.godot/imported/phoneSkeleton_n.png-592a8186814752a80251c272e3097de0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/AndyTiles/AndyTiles_v1.2_n.png"
-dest_files=["res://.godot/imported/AndyTiles_v1.2_n.png-0ad533ecd60c7ad5b85c350613c0b140.ctex"]
+source_file="res://assets/tiles/AndyTiles/phoneSkeleton_n.png"
+dest_files=["res://.godot/imported/phoneSkeleton_n.png-592a8186814752a80251c272e3097de0.ctex"]
 
 [params]
 
