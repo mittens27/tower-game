@@ -7,30 +7,30 @@ var invulnerable := false
 
 func _ready():
 	area_entered.connect(_on_area_entered)
-	
-func _on_area_entered(area):
+
+func receive_hit(attack_data, source_position):
 	if invulnerable:
 		return
 		
-	if not "attack_data" in area:
-		return
-	
-	hit_received.emit(area.attack_data, area.global_position)
-	
-	Events.player_hurt.emit(get_parent())
+	hit_received.emit(attack_data, source_position)
 
 	Events.attack_landed.emit(
-		area.get_parent(),   # attacker
-		get_parent(),        # target
-		area.attack_data
+		attack_data,
+		get_parent(),
 	)
 	
 	if get_parent().is_in_group("player"):
+		Events.player_hurt.emit(get_parent())
 		start_invulnerability()
+		
+func _on_area_entered(area):
+	if not "attack_data" in area:
+		return
+		
+	receive_hit(area.attack_data, area.global_position)
+	print("Player hurtbox entered by:", area.name)
 	
 func start_invulnerability():
 	invulnerable = true
-	monitorable = false
 	await get_tree().create_timer(invulnerability_time).timeout
 	invulnerable = false
-	monitorable = true

@@ -16,8 +16,6 @@ func _ready():
 	rect.size.y = max_height
 	region_rect = rect
 	
-	print("Upward Elevator ref:", elevator)
-	
 func _process(_delta):
 	if elevator == null:
 		return

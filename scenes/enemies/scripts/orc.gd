@@ -78,7 +78,7 @@ func _physics_process(delta):
 	#--- KNOCKBACK ---
 	velocity = velocity.lerp(knockback_velocity, 0.5)
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-	knockback_velocity = knockback_velocity.limit_length(150)
+	knockback_velocity = knockback_velocity.limit_length(50)
 	
 	move_and_slide()
 
